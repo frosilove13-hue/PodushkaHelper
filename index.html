@@ -255,7 +255,43 @@ td:first-child{font-weight:600;color:var(--cream);min-width:7.5em}
 .ok small{font-size:12px;color:var(--muted)}
 .ok-grp{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin:14px 0 2px}
 .hit.no{opacity:.55}
-.nav-in{grid-template-columns:repeat(3,1fr)}
+.nav-in{grid-template-columns:repeat(4,1fr)}
+.nav button{font-size:12px}
+/* стоп-лист */
+.stopmark{display:none;flex:none;font-size:11px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:6px;background:#d93a2b;color:#fff;align-self:center}
+.item.stop .stopmark{display:inline-block}
+.item.stop summary b{text-decoration:line-through;text-decoration-color:#d93a2b;opacity:.7}
+.it-top{align-items:center}
+.stopbar{margin-top:14px;background:#d93a2b1f;border:1.5px solid #d93a2b;border-radius:14px;padding:10px 12px;display:grid;gap:2px}
+.stopbar b{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#ff6b5a}
+.stopbar span{font-size:14px;line-height:1.4}
+/* пары */
+.pairs{display:grid;gap:8px}
+.pairs>span{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
+.pair{text-align:left;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:grid;gap:2px}
+.pair b{font-size:15px;color:var(--cream)}
+.pair small{font-size:13px;color:var(--muted);line-height:1.35}
+.pair.stop{opacity:.5}
+.pair.stop b::after{content:" · стоп";color:#ff6b5a;font-size:12px}
+/* тренажёр */
+.qz-topics{display:grid;gap:10px;margin-top:18px}
+.qz-topics .qbtn em{font-style:normal;font-size:12px;color:var(--fg);margin-top:4px}
+.qz-top{display:flex;justify-content:space-between;align-items:baseline;margin-top:18px}
+.qz-score{font-size:13px;color:var(--muted)}
+.qz-bar{height:6px;border-radius:99px;background:var(--surface-2);margin-top:8px;overflow:hidden}
+.qz-bar i{display:block;height:100%;background:var(--orange);border-radius:99px;transition:width .3s}
+.qz-q{font-family:var(--font-display);font-weight:400;font-size:21px;line-height:1.25;margin:18px 0 14px;color:var(--cream)}
+.qz-opts{display:grid;gap:8px}
+.qz-o{text-align:left;background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;font-size:15px;line-height:1.4;color:var(--fg)}
+.qz-o.right{border-color:#4caf7a;background:#4caf7a22;color:var(--cream)}
+.qz-o.wrong{border-color:#d93a2b;background:#d93a2b22}
+.qz-o:disabled{cursor:default}
+.qz-fb{margin-top:14px;border-radius:14px;padding:12px 14px;font-size:15px}
+.qz-fb.ok{background:#4caf7a1f;border:1.5px dashed #4caf7a}
+.qz-fb.no{background:#d93a2b1f;border:1.5px dashed #d93a2b}
+.qz-fb p{margin:4px 0 0;color:var(--fg)}
+.qz-next{width:100%;margin-top:14px;background:var(--orange);color:#fff;font-weight:600;font-size:16px;padding:14px;border-radius:14px}
+.qz-actions{display:grid;gap:10px;margin-top:4px}
 .nav button{font-size:14px;letter-spacing:.06em;text-transform:uppercase}
 .filt{background:var(--surface);border:1.5px dashed var(--line);border-radius:14px;margin-top:10px}
 .filt[open]{border-color:var(--orange)}
@@ -274,6 +310,7 @@ td:first-child{font-weight:600;color:var(--cream);min-width:7.5em}
   <button data-go="kitchen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M5 12a7 7 0 0 0 14 0"/><path d="M12 5v2M8 6l1 2M16 6l-1 2"/><path d="M7 19h10"/></svg>Кухня</button>
   <button data-go="bar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l-1 6a3 3 0 0 1-6 0Z"/><path d="M12 12v7M8 21h8"/></svg>Бар</button>
   <button data-go="strong"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2h4v4l2 3v12a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V9l2-3Z"/><path d="M8 13h8"/></svg>Крепкое</button>
+  <button data-go="quiz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>Тест</button>
 </div></nav>
 
 <script>
@@ -6549,6 +6586,84 @@ window.SPIRITS = [
   ]
 }
 ];
+// Пары «блюдо + напиток».
+window.PAIRINGS = {
+"Каша овсяная с тунцом и томатами": [["Американо","Чистый кофе не спорит с солёной кашей и тоннато"],["Грейпфрутовый фреш","Горчинка и кислота освежают после сливочной каши"],["Myranda by WWS Vinho Verde","Лёгкое белое к тунцу, если гость завтракает с бокалом"]],
+"Скрембл с креветками и печёным томатом": [["Флэт уайт","Классика к яичному завтраку"],["Апельсиновый фреш","Сладкая кислинка к томату и креветкам"],["Prosecco Bruni Brut","Бокал игристого — праздничный завтрак"]],
+"Большой завтрак со смеш котлетой": [["Капучино большой","Сытному завтраку — большой молочный кофе"],["Бамбл","Апельсин и карамель к томатной фасоли"],["Gusi Main Road","Лёгкий лагер к котлете, если гость не спешит"]],
+"Бенедикт с форелью и гуакомоле": [["Флэт уайт","Плотный кофе к голландезу"],["Грейпфрутовый фреш","Кислота снимает жирность соуса и рыбы"],["Pianeta Organico Prosecco","Игристое и бенедикт — классика бранча"]],
+"Большой завтрак с форелью": [["Латте","Мягкий кофе к рыбе и яйцу"],["Тропический","Яркий лимонад к авокадо и цитрусу"],["Sierra Salinas Brut DO Cava","Сухое игристое к форели"]],
+"Драник с лососем и сметанным кремом": [["Американо","Без молока — не перегружает сметанный крем"],["Клюква кедр","Кислая клюква к лососю и малосольным огурцам"],["Hans Baer Riesling, Weinkellerei Hechtsheim","Рислинг с кислинкой — к лососю"]],
+"Клаб сендвич с курицей и беконом": [["Айс латте","Холодный кофе к сэндвичу"],["Крем сода - Лимон","Газировка к бекону и картофелю фри"],["Astrologer","Пилснер к сэндвичу с беконом"]],
+"Гречневая каша с яйцом пашот и авокадо": [["Капучино маленький","Небольшой кофе к лёгкому завтраку"],["Матча латте","Травянистая матча к зелени и авокадо"],["Ройбуш","Мягкий чай без кофеина"]],
+"Оладьи из кабачка с малосольной семгой и яйцом пашот": [["Флэт уайт","Плотный кофе к оладьям"],["Грейпфрутовый фреш","Горчинка к малосольной рыбе"],["Prosecco Bruni Brut","Игристое к сёмге"]],
+"Шакшука с моцареллой и питой": [["Американо","Простой кофе к пряной томатной сковороде"],["Марокканская мята","Мятный чай — родная пара к шакшуке"],["Gusi Clear Sky","Пшеничное пиво к специям"]],
+"Зелёная гречка с цукини и пармезаном": [["Матча латте","Травянистое к травянистому"],["Зеленый с жасмином","Лёгкий цветочный чай"],["Infinitum Pinot Grigio","Лёгкое белое к пармезану"]],
+"Овсяная каша с карамельными семечками, халвой и вяленой смородиной": [["Раф ванильный","Сладкий завтрак — сливочный раф"],["Капучино большой","Классика к сладкой каше"],["Молочный улун","Сливочный чай к халве"]],
+"Панкейки с тыквенной карамелью и апельсином": [["Какао тыквенный","Тыква к тыкве — осенняя пара"],["Раф цитрусовый","Цитрусовый раф поддержит апельсин"],["Облепиха да хун пао","Облепиха и карамель хорошо дружат"]],
+"Сырники обезжиренные с греческим йогуртом и брусничным соусом": [["Капучино маленький","Классика к сырникам"],["Малина лимон","Ягодный чай к брусничному соусу"],["Иван-чай","Мягкий травяной чай"]],
+"Панкейки с шоколадом, орехами и вишней": [["Латте","Мягкий кофе к шоколаду"],["Вишня апельсин","Вишнёвый чай поддержит вишню"],["Шоколадный милкшейк","Для сладкоежек — шоколад к шоколаду"]],
+"Рисовая каша на кокосовом молоке с бананом и ганашом": [["Флэт уайт","Кофе уравновесит сладость"],["Маракуйя мята","Тропический чай к кокосу и банану"],["Маракуйя кешью банан","Смузи в том же тропическом настроении"]],
+"Сырники с клубничным муссом и кокосовым кремом": [["Капучино большой","Классика к сырникам"],["Клубника - Барбарис","Клубничный лимонад к клубничному муссу"],["Клубничный милкшейк","Десерт к десерту"]],
+"Творожная запеканка с имбирной вишней и кокосовым кремом": [["Раф ванильный","Ваниль к творогу"],["Вишня апельсин","Вишнёвый чай к имбирной вишне"],["Эрл грей","Бергамот освежит сладость"]],
+"Винигрет и печеной свеклой и малосольным сигом": [["Клюква кедр","Клюква и хвоя — к сибирскому сигу"],["Beluga Noble","Рюмка водки к малосольной рыбе — классика"],["Gusi Main Road","Лёгкий лагер к винегрету"]],
+"Лёгкий капустный салат с лаймовой заправкой": [["Тропический","Яркий лимонад к лайму"],["Myranda by WWS Vinho Verde","Лёгкое кислотное белое к хрустящему салату"],["Зеленый персик-айва","Фруктовый зелёный чай"]],
+"Ростбиф с коулслоу": [["Saperavi Shildis Mtebi, Shildis Mtebi","Насыщенное красное к говядине"],["Black Sheep PUB Lager","Плотный лагер к ростбифу"],["Черный чай с барбарисом","Кисловатый чай к мясу"]],
+"Цезарь с курицей": [["Le Grand Noir Winemaker's Selection Chardonnay","Сливочное шардоне к соусу цезарь"],["Astrologer","Пилснер — универсально к салату"],["Крем сода - Лимон","Лимонад к сытному салату"]],
+"Салат с кальмаром": [["Sauvignon Blanc Misty Cliff, Lake Road","Свежий совиньон к морепродуктам и цитрусу"],["Тропический","Яркий лимонад"],["Asahi","Сухой лагер к кальмару"]],
+"Боул с форелью, авокадо и кремовым понзу": [["Roku","Японский джин с юдзу — к понзу (в Джин тонике)"],["Sauvignon Blanc Misty Cliff, Lake Road","Цитрусовое белое к форели"],["Лун цзин","Зелёный чай к азиатскому боулу"]],
+"Очень зелёный салат": [["Mold Gruner Veltliner Ostereichischer Landwein","Грюнер — вино для зелени и сельдерея"],["Матча латте","Травянистое к зелёному"],["Зеленый с жасмином","Лёгкий чай"]],
+"Форель и морковно-лимонный винегрет": [["Hans Baer Riesling, Weinkellerei Hechtsheim","Рислинг к форели и цитрусу"],["Тропический","Яркий лимонад к моркови и лимону"],["Pianeta Organico Prosecco","Игристое к рыбе"]],
+"Оливье с цыпленком и маринованными креветками": [["Russian Standart Original","Оливье и рюмка водки — классика"],["Soley Brut, Salton","Игристое к праздничному салату"],["Ежевика - Черника","Ягодный лимонад"]],
+"Нисуаз с печёным картофелем, креветками и перепелиным яйцом": [["Pinot Grigio Rose, Cielo","Розовое — родная пара к нисуазу"],["Фламинго, Николаев и Сыновья","Сухое розовое к тунцу и яйцу"],["Тропический","Лимонад для безалкогольного варианта"]],
+"Боул с зелёной гречкой, курицей и ореховым соусом": [["Лун цзин","Зелёный чай к ореховому соусу"],["Infinitum Pinot Grigio","Лёгкое белое к курице"],["Матча латте","Матча к гречке и зелени"]],
+"Борщ с говядиной фасолью и салом": [["Beluga Noble","Борщ и рюмка водки — классика"],["Tkhili","Ореховый браун эль к наваристому борщу"],["Черный чай с барбарисом","Тёплый чай после супа"]],
+"Куриный бульон с лапшой": [["Иван-чай","Мягкий травяной чай"],["Infinitum Pinot Grigio","Лёгкое белое не перебьёт бульон"],["Ромашка","Тёплый лёгкий чай"]],
+"Томатный суп и бутерброд с сыром": [["Montefiore Chianti Superiore","Кьянти и томат — итальянская классика"],["Gusi Main Road","Лёгкий лагер к сырному бутерброду"],["Крем сода - Лимон","Лимонад к супу с бутербродом"]],
+"Солянка": [["Onegin","Солянка и водка — классика"],["Black Sheep PUB Lager","Плотный лагер к копчёностям"],["Клюква кедр","Кислый морсовый чай"]],
+"Суп тыквенный с тофу": [["Какао тыквенный","Тыквенный дуэт для любителей сладкого"],["Le Grand Noir Winemaker's Selection Chardonnay","Округлое шардоне к кремовому супу"],["Облепиха да хун пао","Облепиха к тыкве — осенняя пара"]],
+"Грибной крем суп с трюфельным маслом": [["Dona Dominga Pinot Noir Reserva de Familia","Пино нуар — вино для грибов и трюфеля"],["Высота 172 Шардоне","Сливочное шардоне к крем-супу"],["Да хун пао","Тёмный улун с хлебными нотами к грибам"]],
+"Том ям с кальмарами и креветками": [["Tsingtao","Лёгкий азиатский лагер к острому"],["Hans Baer Riesling, Weinkellerei Hechtsheim","Полусухой рислинг гасит остроту"],["Тропический","Холодный лимонад к острому супу"]],
+"Гёдза с креветками, цыплёнком и ореховым соусом": [["Asahi","Японский лагер к гёдза"],["Roku","Джин тоник на японском джине"],["Лун цзин","Зелёный чай"]],
+"Куриные котлеты с зелёным пюре": [["Infinitum Pinot Grigio","Лёгкое белое к курице"],["Ежевика - Черника","Ягодный лимонад"],["Gusi Main Road","Лёгкий лагер"]],
+"Форель с брокколи": [["Высота 172 Шардоне","Шардоне к рыбе со сливочным соусом"],["Sauvignon Blanc Misty Cliff, Lake Road","Свежий совиньон к рыбе и зелени"],["Тропический","Безалкогольный вариант"]],
+"Бефстроганов из говядины с картофельным пюре": [["Finca La Estacada Mansum Tempranillo","Темпранильо к говядине в сливочном соусе"],["Saperavi Shildis Mtebi, Shildis Mtebi","Насыщенное красное"],["Gusi Big Rock","Браун эль к мясу и грибам"]],
+"Куриная грудка в панировке с моцареллой и томатным соусом": [["Montefiore Chianti Superiore","Кьянти к томату и моцарелле"],["Gusi Clear Sky","Пшеничное к панировке"],["Клубника - Барбарис","Лимонад"]],
+"Перечный стейк с фри": [["Domaine Sergent Tradition, 2019","Плотное красное с таннатом к стейку"],["Jack Daniel`s","Стейк и бурбон-стиль — для любителей крепкого"],["Saperavi Shildis Mtebi, Shildis Mtebi","Насыщенное красное к перцу"]],
+"Томлёная говядина с рисом и овощами": [["Bodegas Tampesta Tinto","Мягкое красное к томлёному мясу"],["Tkhili","Ореховый браун эль"],["Черный чай с барбарисом","Тёплый чай к мясу"]],
+"Котлеты из форели с птитимом и песто": [["Infinitum Pinot Grigio","Пино гриджио к песто"],["Montefiore Zibibbo Terre Siciliane","Ароматное белое к рыбе и базилику"],["Спритц Клубника-Базилик","Базилик к песто"]],
+"Треска с зелёными овощами и винным бер блан": [["Cremant d'Alsace, Cave de Turckheim","Креман к соусу бер блан"],["Sauvignon Blanc Misty Cliff, Lake Road","Свежий совиньон к треске"],["Зеленый с жасмином","Лёгкий чай"]],
+"Цыпленок с томатами, картофельным пюре и горчичным велюте": [["Le Grand Noir Winemaker's Selection Chardonnay","Шардоне к сливочному велюте"],["Les Celliers Jean d'Alibert La Sitelle Rouge","Лёгкое красное к курице с томатами"],["Gusi Main Road","Лагер"]],
+"Бифштекс с пюре и жареным томатом": [["Oynos Nero d'Avola-Merlot","Мягкое красное к бифштексу"],["Gusi Big Rock","Браун эль к мясу"],["Черный чай с барбарисом","Чай к мясу"]],
+"Строганов с жареными креветками ремастер": [["Высота 172 Шардоне","Шардоне к сливочному соусу и креветкам"],["Dona Dominga Pinot Noir Reserva de Familia","Пино нуар к грибам и бекону"],["Black Sheep PUB Lager","Плотный лагер"]],
+"Куриная грудка с зелёной гречей": [["Myranda by WWS Vinho Verde","Лёгкое белое к острому чимичурри"],["Тропический","Яркий лимонад"],["Astrologer","Пилснер"]],
+"Карбонара": [["Infinitum Pinot Grigio","Итальянское белое к карбонаре"],["Montefiore Chianti Superiore","Или лёгкое итальянское красное"],["Asahi","Сухой лагер к сливочной пасте"]],
+"Спагетти качо э пеппе": [["Infinitum Pinot Grigio","Свежее белое к сыру и перцу"],["Pianeta Organico Prosecco","Просекко к пасте — по-итальянски"],["Astrologer","Пилснер"]],
+"Болоньезе с растительным мясом": [["Montefiore Chianti Superiore","Кьянти — классика к болоньезе"],["Oynos Nero d'Avola-Merlot","Мягкое сицилийское красное"],["Красное яблоко вишня","Ягодный смузи"]],
+"Паста с курицей и грибами": [["Dona Dominga Pinot Noir Reserva de Familia","Пино нуар к грибам"],["Высота 172 Шардоне","Шардоне к сливочному соусу"],["Gusi Clear Sky","Пшеничное пиво"]],
+"С креветками и вялеными томатами": [["Montefiore Zibibbo Terre Siciliane","Ароматное сицилийское белое к креветкам"],["Pinot Grigio Rose, Cielo","Розовое к вяленым томатам"],["Тропический","Лимонад"]],
+"Равиоли с морепродуктами и сырным соусом": [["Cremant d'Alsace, Cave de Turckheim","Креман к сырному соусу и морепродуктам"],["Le Grand Noir Winemaker's Selection Chardonnay","Округлое шардоне"],["Asahi","Сухой лагер"]],
+"Спагетти с форелью в сливочном соусе": [["Высота 172 Шардоне","Шардоне к сливочной рыбе"],["Hans Baer Riesling, Weinkellerei Hechtsheim","Рислинг освежит сливки"],["Зеленый персик-айва","Фруктовый зелёный чай"]],
+"Мини чебуреки с домашней аджикой": [["Russian Standart Original","Чебуреки и рюмка водки"],["Gusi Main Road","Лёгкий лагер к острому"],["Крем сода - Лимон","Лимонад"]],
+"Двойной чизбургер": [["On Base","Горький IPA к сырному бургеру"],["Виски кола","Классика к бургеру"],["Крем сода - Лимон","Газировка к бургеру"]],
+"Бургер с луковым конфитюром и сырным демигласом": [["Gusi Big Rock","Карамельный браун эль к луковому конфитюру"],["Jim Beam","Бурбон к сладкому луку и мясу"],["Классический милкшейк","Американская классика — бургер и шейк"]],
+"Бургер с куриным филе и пряным соусом": [["Gusi Clear Sky","Пшеничное к курице и пряностям"],["Ostrovica IPA","IPA к острому соусу"],["Тропический","Лимонад"]],
+"Бургер с растительной котлетой": [["Beerathlon","Безалкогольный IPA"],["Astrologer","Пилснер"],["Ежевика - Черника","Ягодный лимонад"]],
+"Сагудай из сига": [["Beluga Noble","Сагудай и ледяная водка — северная классика"],["Hans Baer Riesling, Weinkellerei Hechtsheim","Рислинг к сырой рыбе и луку"],["Клюква кедр","Клюква и кедр — сибирская пара"]],
+"Тартар из говядины с фри и пармезаном": [["Les Celliers Jean d'Alibert La Sitelle Rouge","Лёгкое красное к сырому мясу"],["Негрони","Горький аперитив к тартару"],["Black Sheep PUB Lager","Плотный лагер к фри"]],
+"Тартар из форели с авокадо": [["Sierra Salinas Brut DO Cava","Сухое игристое к рыбному тартару"],["Джин тоник","Свежесть и цитрус"],["Тропический","Лимонад"]],
+"Паштет из куриной грудки с имбирной вишней": [["Dona Dominga Pinot Noir Reserva de Familia","Пино нуар к паштету и вишне"],["Ritmo Latino Rose Brut","Розовое игристое к вишне"],["Вишня апельсин","Вишнёвый чай"]],
+"Креветки в сухарях": [["Asahi","Сухой лагер к жареному"],["Prosecco Bruni Brut","Игристое к креветкам"],["Тропический","Лимонад"]],
+"Картофельные чипсы с пармезаном": [["Gusi Main Road","Пиво к чипсам"],["Апероль спритц","Аперитив с закуской"],["Крем сода - Лимон","Лимонад"]],
+"Крафтовый фуэт, оливки и домашние гриссини": [["Martini Rosso","Вермут с оливками — итальянский аперитив"],["Кампари спритц","Горький спритц к закуске"],["Padro & Co Rojo Clasico","Испанский вермут к фуэту"]],
+"Хрустящие баклажаны": [["Pinot Grigio Rose, Cielo","Розовое к баклажанам"],["Gusi Clear Sky","Пшеничное пиво"],["Тропический","Лимонад"]],
+"Тирамису": [["Эспрессо","Кофе к кофейному десерту"],["Итальяно Эспрессо Мартини","Десерт и коктейль в одной теме"],["Courvoisier VS","Рюмка коньяка как дижестив"]],
+"Грушевый крамбл": [["Капучино маленький","Классика к выпечке"],["Эпл пай спритц","Яблочный пирог в бокале к крамблу"],["Courvoisier VSOP","Коньяк к печёным фруктам"]],
+"Брауни с мороженым и хрустящей вафлей": [["Эспрессо","Горький кофе к шоколаду"],["Konix Cappuccino Stout","Стаут с нотами кофе к брауни"],["Белый русский","Сливочный коктейль к десерту"]],
+"Трес лечес с манго и кокосовым соусом": [["Флэт уайт","Кофе уравновесит сладость"],["Маракуйя мята","Тропический чай к манго"],["Порн стар","Маракуйя и ваниль к тропическому десерту"]],
+"Вишнёвый пирог": [["Капучино большой","Классика к пирогу"],["Вишня апельсин","Вишнёвый чай к вишне"],["Ritmo Latino Rose Brut","Розовое игристое к ягодам"]],
+"Меренговый рулет": [["Американо","Несладкий кофе к сладкой меренге"],["Малина лимон","Малиновый чай к малине"],["Prosecco Bruni Brut","Игристое к лёгкому десерту"]]
+};
 </script>
 <script>
 (function(){
@@ -6602,14 +6717,15 @@ function shortAllerg(it){
 
 function dishHTML(it, gi, ii){
   const al = shortAllerg(it);
-  return `<details class="item" id="k-${gi}-${ii}"><summary>
-    <div class="it-top"><b>${esc(it.name)}</b></div>
+  return `<details class="item" id="k-${gi}-${ii}" data-name="${esc(it.name)}"><summary>
+    <div class="it-top"><b>${esc(it.name)}</b><span class="stopmark">СТОП</span></div>
     ${it.serve?`<span class="serve">${esc(it.serve)}</span>`:""}
     ${al.length?`<div class="tags">${al.map(t=>`<span class="al">${esc(t)}</span>`).join("")}</div>`:""}
     <span class="more">Подробнее</span>
   </summary><div class="it-body">
     ${it.desc?`<div class="fld"><span>Как рассказать гостю</span><p>${esc(it.desc)}</p></div>`:""}
     ${it.dops?`<div class="sell"><span>Предложить допом</span><p>${esc(it.dops)}</p></div>`:""}
+    ${pairsHTML(it.name)}
     ${it.comp.length?`<div class="fld"><span>Состав</span><ul>${it.comp.map(c=>`<li>${esc(c)}</li>`).join("")}</ul></div>`:""}
     ${it.allerg?`<div class="al-box"><span>Основные аллергены</span><p>${esc(it.allerg)}</p></div>`:""}
     ${it.notes.length?`<div class="warn"><span>Важно знать</span><ul>${it.notes.map(n=>`<li>${esc(n)}</li>`).join("")}</ul></div>`:""}
@@ -6624,6 +6740,7 @@ function kitchen(gi, ii){
   $view.innerHTML = `
   <section class="hero compact"><img class="hero-cat" src="${CAT}" alt="Кот «Подушки»">
     <div><span class="eyebrow">Шпаргалка официанта</span><h1>Кухня</h1><p>Нажмите на блюдо: что рассказать гостю, что предложить и про аллергены.</p></div></section>
+  <div class="stopbar" id="stopbar" hidden></div>
   <input id="kq" class="search" type="search" placeholder="Найти блюдо или продукт…" autocomplete="off" value="${esc(kQuery)}">
   <details class="filt" id="filt" ${alSel.length?"open":""}><summary>Гость не ест… <em id="alcnt">${alSel.length?`выбрано: ${alSel.length}`:"фильтр аллергенов"}</em></summary>
     <div class="in"><div class="pk-chips">${ALLERGENS.map(a=>`<button type="button" class="pk" data-al="${a[0]}" aria-pressed="${alSel.includes(a[0])}">${esc(a[1])}</button>`).join("")}</div>
@@ -6664,8 +6781,8 @@ function barItemHTML(it, gi, ii, pre){
   const abv = it.chips.find(c=>ABV.includes(c[0])), meta = it.chips.find(c=>META.includes(c[0]));
   const specs = it.chips.filter(c=>!ABV.includes(c[0]) && !META.includes(c[0]));
   const body = specs.length || it.long.length;
-  return `<details class="item" id="${pre||"it"}-${gi}-${ii}"><summary>
-    <div class="it-top"><b>${esc(it.name)}</b>${abv?`<span class="abv">${esc(abv[1])}</span>`:""}</div>
+  return `<details class="item" id="${pre||"it"}-${gi}-${ii}" data-name="${esc(it.name)}"><summary>
+    <div class="it-top"><b>${esc(it.name)}</b><span class="stopmark">СТОП</span>${abv?`<span class="abv">${esc(abv[1])}</span>`:""}</div>
     ${it.alt?`<span class="alt">${esc(it.alt)}</span>`:""}${meta?`<span class="maker">${esc(meta[1])}</span>`:""}
     ${it.tags.length?`<div class="tags">${it.tags.map(t=>`<span>${esc(t)}</span>`).join("")}</div>`:""}
     ${body?`<span class="more">Подробнее</span>`:""}
@@ -6681,6 +6798,7 @@ function barMenu(k, sid, gi, ii){
   if (gi!==undefined) bQuery[k] = "";
   topbar(P.title); setNav(k);
   $view.innerHTML = `<div class="sp-head"><span class="eyebrow">Шпаргалка официанта</span><h1>${esc(P.title)}</h1><p>${esc(P.lead)}</p></div>
+  <div class="stopbar" id="stopbar" hidden></div>
   <input id="bq" class="search" type="search" placeholder="${esc(P.ph)}" autocomplete="off" value="${esc(bQuery[k])}">
   ${k==="strong"?`<div class="tabs" role="tablist" style="margin-top:12px">${[["menu","Наш ассортимент"],["enc","Энциклопедия"]].map(m=>`<button class="tab" role="tab" type="button" aria-selected="${encMode===m[0]}" data-mode="${m[0]}">${m[1]}</button>`).join("")}</div>`:""}
   <div id="bwrap"></div>`;
@@ -6704,7 +6822,7 @@ function renderBar(){
     box.innerHTML = `<p class="count">Найдено в ассортименте: ${found.length}</p>` + (found.length
       ? found.map((x,i)=>`<div class="ok-grp">${M.length>1?esc(x.sh.title)+" · ":""}${esc(x.g.title)}</div>${barItemHTML(x.it,"s",i,"bs")}`).join("")
       : `<p class="empty">В ассортименте ничего не нашлось по запросу «${esc(bQuery[kind])}».</p>`) + enc;
-    return;
+    applyStop(); return;
   }
   if (kind==="strong" && encMode==="enc"){ box.innerHTML = encGrid(); return; }
   const sh = M.find(x=>x.id===bSheet[kind]);
@@ -6712,6 +6830,7 @@ function renderBar(){
   ${sh.groups.length>1?`<div class="jump">${sh.groups.map((g,i)=>`<button type="button" data-jump="${i}">${esc(g.title)}</button>`).join("")}</div>`:""}
   ${sh.groups.map((g,i)=>`<section class="grp" id="grp-${i}"><h2>${esc(g.title)}<small>${g.items.length}</small></h2>${g.items.map((it,j)=>barItemHTML(it,i,j)).join("")}</section>`).join("")}`;
   const t = box.querySelector('.tab[aria-selected="true"]'); t && t.scrollIntoView({inline:"center",block:"nearest"});
+  applyStop();
 }
 
 // ---------- Энциклопедия (из барного приложения)
@@ -6784,14 +6903,164 @@ function encHits(q){
   return `<div class="ok-grp">Энциклопедия</div><div class="res">${h.map(x=>`<button class="hit" type="button" data-spirit="${x.s.id}" data-sec="${x.sec.id}"><span class="where">${esc(x.s.name)} · ${esc(x.sec.title)}</span><span class="snip">${snip(x.t,q)}</span></button>`).join("")}</div>`;
 }
 
+// ---------- Стоп-лист (Google-таблица «Стоп-лист Подушка», колонка «Позиция»)
+const STOP_SHEET = "1eLqYZQXgZnRTjh8JG0cBa0rvy-Fv0Vs3AHvgTtVQDYk";
+const normName = s => String(s||"").toLowerCase().replace(/ё/g,"е").replace(/[«»"'`.,!?()\-–—/]/g," ").replace(/\s+/g," ").trim();
+let STOP = new Set(), stopNames = [], stopLoaded = false;
+function allNames(){
+  const out = [];
+  K.forEach(g=>g.items.forEach(it=>out.push(it.name)));
+  ALL.forEach(s=>s.groups.forEach(g=>g.items.forEach(it=>out.push(it.name))));
+  return out;
+}
+function parseCSV(t){
+  const rows=[]; let row=[], cell="", q=false;
+  for(let i=0;i<t.length;i++){ const ch=t[i];
+    if(q){ if(ch==='"'){ if(t[i+1]==='"'){cell+='"';i++;} else q=false; } else cell+=ch; }
+    else if(ch==='"') q=true; else if(ch===','){row.push(cell);cell="";} else if(ch==='\n'){row.push(cell);rows.push(row);row=[];cell="";} else if(ch!=='\r') cell+=ch;
+  }
+  if(cell||row.length){row.push(cell);rows.push(row);} return rows;
+}
+async function loadStop(){
+  try{
+    const r = await fetch(`https://docs.google.com/spreadsheets/d/${STOP_SHEET}/gviz/tq?tqx=out:csv&_=${Date.now()}`);
+    if(!r.ok) throw 0;
+    const rows = parseCSV(await r.text()).slice(1).map(x=>(x[0]||"").trim()).filter(Boolean);
+    const names = allNames(), set = new Set();
+    rows.forEach(entry=>{
+      const e = normName(entry); if(e.length<2) return;
+      const exact = names.filter(n=>normName(n)===e);
+      (exact.length?exact:names.filter(n=>normName(n).includes(e))).forEach(n=>set.add(n));
+    });
+    const changed = [...set].sort().join("|") !== [...STOP].sort().join("|") || !stopLoaded;
+    STOP = set; stopNames = [...set]; stopLoaded = true;
+    if(changed) applyStop();
+  }catch(e){ /* таблица недоступна — приложение работает без стоп-листа */ }
+}
+function applyStop(){
+  document.querySelectorAll("details.item[data-name]").forEach(el=>{
+    const on = STOP.has(el.dataset.name); el.classList.toggle("stop", on);
+  });
+  document.querySelectorAll("[data-drink-name]").forEach(el=>el.classList.toggle("stop", STOP.has(el.dataset.drinkName)));
+  const b = document.getElementById("stopbar");
+  if(b){ b.hidden = !stopNames.length; b.innerHTML = stopNames.length ? `<b>В стопе сейчас</b><span>${stopNames.map(esc).join(" · ")}</span>` : ""; }
+}
+setInterval(loadStop, 60000);
+document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) loadStop(); });
+
+// ---------- Пары «блюдо + напиток»
+const PAIRS = window.PAIRINGS || {};
+const drinkLoc = {};
+ALL.forEach(s=>s.groups.forEach((g,gi)=>g.items.forEach((it,ii)=>{ drinkLoc[it.name] = {sid:s.id, gi, ii, abv:(it.chips.find(c=>c[0]==="Крепость")||[])[1]}; })));
+function pairsHTML(name){
+  const p = PAIRS[name]; if(!p||!p.length) return "";
+  return `<div class="pairs"><span>Что предложить выпить</span>${p.map(([d,why])=>{ const l=drinkLoc[d]; if(!l) return "";
+    return `<button type="button" class="pair" data-drink="${l.sid}-${l.gi}-${l.ii}" data-drink-name="${esc(d)}"><b>${esc(d)}</b><small>${esc(why)}</small></button>`; }).join("")}</div>`;
+}
+
+// ---------- Тренажёр
+const pick = a => a[Math.floor(Math.random()*a.length)];
+const shuffle = a => { a=[...a]; for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
+function distract(correct, pool, n=3){
+  const c = normName(correct), seen = new Set([c]), out=[];
+  for(const x of shuffle(pool)){ const k=normName(x); if(!x||seen.has(k)) continue; seen.add(k); out.push(x); if(out.length===n) break; }
+  return out.length===n ? out : null;
+}
+const KF = []; K.forEach(g=>g.items.forEach(it=>KF.push(it)));
+const BF = []; ALL.forEach(s=>s.groups.forEach(g=>g.items.forEach(it=>BF.push({s,g,it}))));
+const chip = (it,k) => (it.chips.find(c=>c[0]===k)||[])[1];
+const longF = (it,k) => (it.long.find(f=>f[0]===k)||[])[1];
+const short = (s,n=150) => s.length>n ? s.slice(0,n).replace(/\s+\S*$/,"")+"…" : s;
+const GEN = {
+  kitchen: [
+    ()=>{ const it=pick(KF.filter(x=>x.allerg)); const d=distract(it.allerg, KF.map(x=>x.allerg)); return d&&{q:`Какие основные аллергены у блюда «${it.name}»?`, a:it.allerg, o:d, why:`Аллергены: ${it.allerg}.`}; },
+    ()=>{ const it=pick(KF.filter(x=>x.dops)); const d=distract(it.dops, KF.map(x=>x.dops)); return d&&{q:`Что предложить допом к блюду «${it.name}»?`, a:it.dops, o:d, why:`По меню допом: ${it.dops}.`}; },
+    ()=>{ const it=pick(KF.filter(x=>x.desc&&x.desc.length>40)); const d=distract(it.name, KF.map(x=>x.name)); return d&&{q:`О каком блюде так рассказывают гостю: «${short(it.desc,170)}»`, a:it.name, o:d, why:`Это «${it.name}».`}; },
+    ()=>{ const it=pick(KF.filter(x=>x.notes.length)); const d=distract(it.notes[0], KF.filter(x=>x!==it&&x.notes.length).map(x=>x.notes[0])); return d&&{q:`Что важно знать про блюдо «${it.name}»?`, a:short(it.notes[0],180), o:d.map(x=>short(x,180)), why:it.notes.join(" ")}; },
+    ()=>{ const it=pick(KF.filter(x=>x.comp.length>1)); const d=distract(it.name, KF.map(x=>x.name)); return d&&{q:`В каком блюде есть: «${short(it.comp.slice(0,2).join("; "),170)}»?`, a:it.name, o:d, why:`Это состав блюда «${it.name}».`}; },
+  ],
+  bar: [
+    ()=>{ const pool=BF.filter(x=>x.s.id==="cocktails"&&longF(x.it,"Состав")); const x=pick(pool); const d=distract(longF(x.it,"Состав"), pool.map(y=>longF(y.it,"Состав"))); return d&&{q:`Что входит в коктейль «${x.it.name}»?`, a:longF(x.it,"Состав"), o:d, why:`${x.it.name}: ${longF(x.it,"Состав")}.`}; },
+    ()=>{ const pool=BF.filter(x=>x.s.id==="nonalc"&&longF(x.it,"Состав")&&x.g.title!=="Кофе"); const x=pick(pool); const d=distract(longF(x.it,"Состав"), pool.map(y=>longF(y.it,"Состав"))); return d&&{q:`Из чего делают «${x.it.name}» (${x.g.title.toLowerCase()})?`, a:short(longF(x.it,"Состав"),160), o:d.map(y=>short(y,160)), why:`${x.it.name}: ${longF(x.it,"Состав")}.`}; },
+    ()=>{ const pool=BF.filter(x=>chip(x.it,"Крепость")); const x=pick(pool); const d=distract(chip(x.it,"Крепость"), pool.map(y=>chip(y.it,"Крепость"))); return d&&{q:`Какая крепость у «${x.it.name}»?`, a:chip(x.it,"Крепость"), o:d, why:`${x.it.name} — ${chip(x.it,"Крепость")}.`}; },
+    ()=>{ const pool=BF.filter(x=>chip(x.it,"Производитель")||chip(x.it,"Регион")); const x=pick(pool); const v=it=>chip(it,"Производитель")||chip(it,"Регион"); const d=distract(v(x.it), pool.map(y=>v(y.it))); return d&&{q:`Откуда «${x.it.name}»?`, a:v(x.it), o:d, why:`${x.it.name}: ${v(x.it)}.`}; },
+    ()=>{ const pool=BF.filter(x=>chip(x.it,"Стиль")); const x=pick(pool); const d=distract(chip(x.it,"Стиль"), pool.map(y=>chip(y.it,"Стиль"))); return d&&{q:`Какой стиль у «${x.it.name}»?`, a:chip(x.it,"Стиль"), o:d, why:`${x.it.name} — ${chip(x.it,"Стиль")}.`}; },
+    ()=>{ const pool=BF.filter(x=>longF(x.it,"Сортовой состав")); const x=pick(pool); const d=distract(longF(x.it,"Сортовой состав"), pool.map(y=>longF(y.it,"Сортовой состав"))); return d&&{q:`Из какого винограда «${x.it.name}»?`, a:longF(x.it,"Сортовой состав"), o:d, why:`${x.it.name}: ${longF(x.it,"Сортовой состав")}.`}; },
+    ()=>{ const dish=pick(Object.keys(PAIRS)); const good=PAIRS[dish].map(p=>p[0]); const a=pick(good); const pool=BF.filter(x=>x.s.id!=="nonalc"&&!good.includes(x.it.name)&&!x.it.name.match(/Zero|Approved|Moose|Clausthaler|Beerathlon/)).map(x=>x.it.name); const d=distract(a,pool); return d&&{q:`Гость заказал «${dish}». Что из напитков мы советуем к этому блюду?`, a, o:d, why:`К «${dish}» советуем: ${PAIRS[dish].map(p=>p[0]+" — "+p[1].toLowerCase()).join("; ")}.`}; },
+  ]
+};
+GEN.all = [...GEN.kitchen, ...GEN.bar];
+const QUIZ_TOPICS = [["kitchen","Кухня","Аллергены, допы, состав, особенности блюд"],["bar","Бар","Коктейли, крепость, вино, пиво, пары к блюдам"],["all","Всё меню","Вперемешку кухня и бар"]];
+let QZ = null;
+function makeQuestions(topic, n=10){
+  const out=[], seen=new Set(); let guard=0;
+  while(out.length<n && guard++<300){ const q=pick(GEN[topic])(); if(!q||seen.has(q.q)) continue; seen.add(q.q); q.opts=shuffle([q.a,...q.o]); out.push(q); }
+  return out;
+}
+function lsGet(k){ try{ return JSON.parse(localStorage.getItem(k)); }catch(e){ return null; } }
+function lsSet(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+function tgName(){ try{ const u=tg&&tg.initDataUnsafe&&tg.initDataUnsafe.user; return u?[u.first_name,u.last_name].filter(Boolean).join(" "):""; }catch(e){ return ""; } }
+function quiz(){
+  topbar("Тренажёр"); setNav("quiz"); QZ=null;
+  const best = lsGet("pd_best")||{};
+  $view.innerHTML = `<div class="sp-head"><span class="eyebrow">Подготовка к аттестации</span><h1>Тренажёр</h1><p>10 вопросов по нашему меню. После ответа сразу видно, где правильно. Результат можно отправить управляющему.</p></div>
+  <div class="qz-topics">${QUIZ_TOPICS.map(t=>`<button type="button" class="qbtn" data-qz="${t[0]}"><b>${t[1]}</b><span>${t[2]}</span>${best[t[0]]!=null?`<em>Лучший результат: ${best[t[0]]} из 10</em>`:""}</button>`).join("")}</div>`;
+}
+function startQuiz(topic){ QZ={topic, qs:makeQuestions(topic), i:0, score:0, wrong:[], answered:false}; showQ(); }
+function showQ(){
+  const q=QZ.qs[QZ.i]; QZ.answered=false;
+  $view.innerHTML = `<div class="qz-top"><span class="eyebrow">Вопрос ${QZ.i+1} из ${QZ.qs.length}</span><span class="qz-score">Верно: ${QZ.score}</span></div>
+  <div class="qz-bar"><i style="width:${(QZ.i)/QZ.qs.length*100}%"></i></div>
+  <h2 class="qz-q">${esc(q.q)}</h2>
+  <div class="qz-opts">${q.opts.map((o,i)=>`<button type="button" class="qz-o" data-ans="${i}">${esc(o)}</button>`).join("")}</div>
+  <div id="qzfb"></div>`;
+  window.scrollTo(0,0);
+}
+function answer(i){
+  if(QZ.answered) return; QZ.answered=true;
+  const q=QZ.qs[QZ.i], ok = q.opts[i]===q.a;
+  if(ok) QZ.score++; else QZ.wrong.push(q);
+  try{ tg && tg.HapticFeedback.notificationOccurred(ok?"success":"error"); }catch(e){}
+  document.querySelectorAll(".qz-o").forEach((b,j)=>{ b.disabled=true; if(q.opts[j]===q.a) b.classList.add("right"); else if(j===i) b.classList.add("wrong"); });
+  const last = QZ.i===QZ.qs.length-1;
+  document.getElementById("qzfb").innerHTML = `<div class="qz-fb ${ok?"ok":"no"}"><b>${ok?"Верно!":"Не совсем."}</b><p>${esc(q.why)}</p></div>
+    <button type="button" class="qz-next" data-next>${last?"Посмотреть результат":"Дальше →"}</button>`;
+  document.querySelector("[data-next]").scrollIntoView({block:"nearest",behavior:"smooth"});
+}
+function resultQ(){
+  const {score, qs, wrong, topic} = QZ, n=qs.length;
+  const best = lsGet("pd_best")||{}; if(best[topic]==null || score>best[topic]){ best[topic]=score; lsSet("pd_best",best); }
+  const tname = QUIZ_TOPICS.find(t=>t[0]===topic)[1];
+  const verdict = score>=9?"Отлично, готов к аттестации!":score>=7?"Хорошо, но есть что повторить.":"Стоит ещё раз пройтись по меню.";
+  $view.innerHTML = `<div class="sp-head"><span class="eyebrow">Тренажёр · ${esc(tname)}</span><h1>${score} из ${n}</h1><p>${verdict}</p></div>
+  <label class="eyebrow" for="qzname" style="display:block;margin-top:16px">Ваше имя</label>
+  <input id="qzname" class="search" style="margin-top:6px" placeholder="Имя и фамилия" value="${esc(lsGet("pd_name")||tgName())}">
+  <div class="qz-actions"><button type="button" class="qz-next" data-send>Отправить результат управляющему</button>
+  <button type="button" class="qbtn" data-qz="${topic}"><b>Ещё раз</b><span>Новые 10 вопросов</span></button></div>
+  ${wrong.length?`<div class="ok-grp" style="margin-top:20px">Разбор ошибок</div><div class="cards">${wrong.map(q=>`<div class="card"><b>${esc(q.q)}</b><p>Правильно: ${esc(q.a)}</p></div>`).join("")}</div>`:""}`;
+  window.scrollTo(0,0);
+}
+function sendResult(){
+  const name = (document.getElementById("qzname").value||"").trim() || "Без имени"; lsSet("pd_name", name);
+  const tname = QUIZ_TOPICS.find(t=>t[0]===QZ.topic)[1];
+  const d = new Date(), date = d.toLocaleDateString("ru-RU")+" "+d.toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"});
+  const text = `📝 Тренажёр «Подушки»\n${name}\nТема: ${tname}\nРезультат: ${QZ.score} из ${QZ.qs.length}\n${date}` + (QZ.wrong.length?`\n\nОшибки:\n${QZ.wrong.map(q=>"• "+q.q).join("\n")}`:"");
+  const url = `https://t.me/share/url?url=${encodeURIComponent(location.origin+location.pathname)}&text=${encodeURIComponent(text)}`;
+  try{ if(tg && tg.openTelegramLink){ tg.openTelegramLink(url); return; } }catch(e){}
+  window.open(url, "_blank");
+}
+
 // ---------- Навигация (hash — для кнопки «Назад» в Telegram)
-function route(){
+function route(){ routeInner(); applyStop(); }
+function routeInner(){
   const [a,b,c,d] = location.hash.replace(/^#/,"").split("-");
   window.scrollTo(0,0);
   if(a==="k") kitchen(b,c);
   else if(a==="bar") barMenu("bar");
   else if(a==="strong") barMenu("strong");
   else if(a==="s") spirit(b,c);
+  else if(a==="d"){ encMode="menu"; barMenu(b==="spirits"?"strong":"bar", b, c, d); }
+  else if(a==="quiz") quiz();
   else kitchen();
 }
 function go(h){ haptic(); if(location.hash==="#"+h) route(); else location.hash=h; }
@@ -6800,6 +7069,11 @@ window.addEventListener("hashchange", route);
 document.addEventListener("click", e=>{
   const el=e.target.closest("button"); if(!el) return;
   if(el.dataset.back!==undefined){ goBack(); return; }
+  if(el.dataset.drink){ go("d-"+el.dataset.drink); return; }
+  if(el.dataset.qz){ haptic(); startQuiz(el.dataset.qz); return; }
+  if(el.dataset.ans!==undefined){ answer(+el.dataset.ans); return; }
+  if(el.dataset.next!==undefined){ haptic(); if(QZ.i<QZ.qs.length-1){ QZ.i++; showQ(); } else resultQ(); return; }
+  if(el.dataset.send!==undefined){ haptic(); sendResult(); return; }
   if(el.dataset.pick!==undefined){ const box=el.closest(".picker"); box.querySelectorAll(".pk").forEach(b=>b.setAttribute("aria-pressed", b===el)); box.querySelectorAll(".pk-card").forEach(c=>c.hidden=c.dataset.card!==el.dataset.pick); haptic(); return; }
   if(el.dataset.reveal!==undefined){ el.nextElementSibling.hidden=false; el.hidden=true; haptic(); return; }
   if(el.dataset.mode){ encMode = el.dataset.mode; haptic(); document.querySelectorAll("[data-mode]").forEach(b=>b.setAttribute("aria-selected", b.dataset.mode===encMode)); renderBar(); return; }
@@ -6811,6 +7085,7 @@ document.addEventListener("click", e=>{
 });
 if(tg){ try{ tg.BackButton.onClick(goBack); }catch(e){} }
 route();
+loadStop();
 })();
 </script>
 </body></html>
