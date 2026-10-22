@@ -306,6 +306,8 @@ td:first-child{font-weight:600;color:var(--cream);min-width:7.5em}
 
 
 /* фото позиций */
+.it-photo.fit{object-fit:contain;background:#fff;height:300px;width:100%;aspect-ratio:auto}
+.it-top .thumb + b{flex:1;text-align:left}
 .it-top .thumb{flex:none;width:52px;height:52px;border-radius:12px;object-fit:cover;background:var(--surface-2);order:-1;margin-right:2px}
 .it-photo{display:block;width:100%;max-height:340px;aspect-ratio:4/3;object-fit:cover;border-radius:14px;background:var(--surface-2)}
 /* режим администратора (как в барном приложении) */
@@ -6851,7 +6853,7 @@ function shortAllerg(it){
 }
 
 function photoThumb(it){ return it.img ? `<img class="thumb" src="${esc(src(it.img))}" alt="" loading="lazy">` : ""; }
-function photoBig(it){ return it.img ? `<img class="it-photo" src="${esc(src(it.img))}" alt="${esc(it.name)}" loading="lazy">` : ""; }
+function photoBig(it){ return it.img ? `<img class="it-photo${/bottle-/.test(it.img)?" fit":""}" src="${esc(src(it.img))}" alt="${esc(it.name)}" loading="lazy">` : ""; }
 function dishHTML(it, gi, ii){
   const al = shortAllerg(it);
   return `<details class="item" id="k-${gi}-${ii}" data-name="${esc(it.name)}"><summary>
