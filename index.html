@@ -354,6 +354,8 @@ body.admin .wrap{padding-bottom:160px}
 .err{color:#c0392b;font-size:14px;margin:0}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(130px + env(safe-area-inset-bottom,0px));z-index:70;background:var(--ink);color:#fff;padding:10px 16px;border-radius:16px;font-weight:600;font-size:14px;width:max-content;max-width:calc(100% - 32px);text-align:center;box-shadow:0 6px 20px #0004}
 
+.adm-foot{margin:28px 0 8px;text-align:center}
+.adm-foot button{font-size:13px;font-weight:600;color:var(--muted);padding:8px 14px;border-radius:999px;border:1px dashed var(--line);background:transparent}
 /* мем в конце теста */
 .meme{position:relative;margin:16px 0 4px;border-radius:18px;overflow:hidden;height:300px;display:grid;place-items:center;isolation:isolate}
 .meme.happy{background:radial-gradient(circle at 50% 60%,#ffe9a8,#ffb86b 70%,#ff8a4c)}
@@ -7305,7 +7307,8 @@ function sendResult(){
 }
 
 // ---------- Навигация (hash — для кнопки «Назад» в Telegram)
-function route(){ routeInner(); applyStop(); }
+function route(){ routeInner(); adminFooter(); applyStop(); }
+function adminFooter(){ const f=document.createElement("div"); f.className="adm-foot"; f.innerHTML=`<button type="button" data-act="gear">${A.on?"⚙️ Настройки редактирования":"⚙️ Вход для администратора"}</button>`; $view.appendChild(f); }
 function routeInner(){
   const [a,b,c,d] = location.hash.replace(/^#/,"").split("-");
   window.scrollTo(0,0);
@@ -7688,7 +7691,7 @@ function adminAct(el){
   if(a==="addGroup") return nameSheet("Новая категория", "", t=>{ groups.push({title:t, items:[]}); });
 }
 
-function rerender(){ const y = window.scrollY; routeInner(); window.scrollTo(0, y); applyStop(); }
+function rerender(){ const y = window.scrollY; routeInner(); adminFooter(); window.scrollTo(0, y); applyStop(); }
 function reloadContent(){
   return fetch("content.json?t=" + Date.now(), { cache: "no-store" })
     .then(r => r.ok ? r.json() : null)
