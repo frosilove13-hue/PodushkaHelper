@@ -309,10 +309,6 @@ td:first-child{font-weight:600;color:var(--cream);min-width:7.5em}
 .it-top .thumb{flex:none;width:52px;height:52px;border-radius:12px;object-fit:cover;background:var(--surface-2);order:-1;margin-right:2px}
 .it-photo{display:block;width:100%;max-height:340px;aspect-ratio:4/3;object-fit:cover;border-radius:14px;background:var(--surface-2)}
 /* режим администратора (как в барном приложении) */
-.top-gear{width:36px;height:36px;border-radius:50%;border:1.5px dashed var(--line);color:var(--muted);display:inline-flex;align-items:center;justify-content:center;padding:0;flex:none;background:var(--surface)}
-.top-title.top-sub + .top-gear{margin-left:4px}
-.top-gear svg{width:18px;height:18px;display:block;flex:none}
-body.admin .top-gear{border-color:var(--orange);color:var(--orange)}
 .abar{position:fixed;left:0;right:0;bottom:calc(66px + env(safe-area-inset-bottom,0px));z-index:26;background:var(--orange);color:#fff}
 .abar-in{max-width:640px;margin:0 auto;padding:8px max(16px,env(safe-area-inset-right,0px)) 8px max(16px,env(safe-area-inset-left,0px));display:flex;align-items:center;gap:8px}
 .abar .ab-t{flex:1;min-width:0;font-size:13px;font-weight:600;line-height:1.25}
@@ -354,8 +350,9 @@ body.admin .wrap{padding-bottom:160px}
 .err{color:#c0392b;font-size:14px;margin:0}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(130px + env(safe-area-inset-bottom,0px));z-index:70;background:var(--ink);color:#fff;padding:10px 16px;border-radius:16px;font-weight:600;font-size:14px;width:max-content;max-width:calc(100% - 32px);text-align:center;box-shadow:0 6px 20px #0004}
 
-.adm-foot{margin:28px 0 8px;text-align:center}
-.adm-foot button{font-size:13px;font-weight:600;color:var(--muted);padding:8px 14px;border-radius:999px;border:1px dashed var(--line);background:transparent}
+.logo-tap{padding:0;margin:0;border:0;background:none;display:block;flex:none;line-height:0;touch-action:manipulation;-webkit-tap-highlight-color:transparent;cursor:default}
+.logo-tap img{pointer-events:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.top{touch-action:manipulation}
 /* мем в конце теста */
 .meme{position:relative;margin:16px 0 4px;border-radius:18px;overflow:hidden;height:300px;display:grid;place-items:center;isolation:isolate}
 .meme.happy{background:radial-gradient(circle at 50% 60%,#ffe9a8,#ffb86b 70%,#ff8a4c)}
@@ -6844,7 +6841,7 @@ function hits(it, keys){ const t = dishText(it); return keys.filter(k => ALLERGE
 // ---------- общие куски
 const back = `<button class="back" type="button" data-back aria-label="Назад"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>`;
 function topbar(sub){
-  $top.innerHTML = `<img class="top-word" src="${WORD}" alt="Подушка"><div class="top-title top-sub">${esc(sub)}</div>${gearBtn()}`;
+  $top.innerHTML = `<button type="button" class="logo-tap" aria-label="Подушка"><img class="top-word" src="${WORD}" alt="Подушка" draggable="false"></button><div class="top-title top-sub">${esc(sub)}</div>`;
   if (tg) { try { location.hash && location.hash!=="#" ? tg.BackButton.show() : tg.BackButton.hide(); } catch(e){} }
 }
 function setNav(id){ document.querySelectorAll(".nav button").forEach(b=>{ if(b.dataset.go===id) b.setAttribute("aria-current","page"); else b.removeAttribute("aria-current"); }); }
@@ -7010,7 +7007,7 @@ function spirit(id, sec){
   const s = byId(id); if(!s){ barMenu("strong"); return; }
   const idx = Math.max(0, s.sections.findIndex(x=>x.id===sec));
   const cur = s.sections[idx];
-  $top.innerHTML = back + `<div class="top-title">${esc(s.name)}<small>№ ${esc(s.num)} · ${esc(cur.title)}</small></div><span style="margin-left:auto"></span>${gearBtn()}`;
+  $top.innerHTML = back + `<div class="top-title">${esc(s.name)}<small>№ ${esc(s.num)} · ${esc(cur.title)}</small></div>`;
   if (tg) { try { tg.BackButton.show(); } catch(e){} }
   setNav("strong");
   const prev = s.sections[idx-1], next = s.sections[idx+1];
@@ -7307,8 +7304,17 @@ function sendResult(){
 }
 
 // ---------- Навигация (hash — для кнопки «Назад» в Telegram)
-function route(){ routeInner(); adminFooter(); applyStop(); }
-function adminFooter(){ const f=document.createElement("div"); f.className="adm-foot"; f.innerHTML=`<button type="button" data-act="gear">${A.on?"⚙️ Настройки редактирования":"⚙️ Вход для администратора"}</button>`; $view.appendChild(f); }
+function route(){ routeInner(); applyStop(); }
+// Вход для администратора: 5 нажатий подряд на логотип «Подушка» (пауза больше 1,5 с — счёт заново).
+// Считаем касания по pointerup: на телефоне частые тапы иначе съедает жест увеличения.
+let logoTaps = 0, logoTimer = null;
+function logoTap(){
+  logoTaps++; clearTimeout(logoTimer); logoTimer = setTimeout(()=>{ logoTaps = 0; }, 1500);
+  if(logoTaps >= 5){ logoTaps = 0; try{ tg && tg.HapticFeedback.impactOccurred("medium"); }catch(x){} setTimeout(openGear, 250); }
+}
+let lastPointer = 0;
+document.addEventListener("pointerup", e=>{ if(e.target.closest && e.target.closest(".logo-tap")){ lastPointer = Date.now(); logoTap(); } });
+document.addEventListener("click", e=>{ if(e.target.closest && e.target.closest(".logo-tap") && Date.now()-lastPointer > 700) logoTap(); });  // запасной путь без pointer-событий
 function routeInner(){
   const [a,b,c,d] = location.hash.replace(/^#/,"").split("-");
   window.scrollTo(0,0);
@@ -7516,7 +7522,8 @@ function openSheet({ title, body, saveText, onSave, onDelete, deleteText, onOpen
   const form = bg.querySelector("form"), errEl = form.querySelector("[data-err]");
   const close = () => bg.remove();
   const fail = msg => { errEl.textContent = msg; errEl.hidden = false; };
-  bg.addEventListener("click", e=>{ if(e.target===bg) close(); });
+  const opened = Date.now();
+  bg.addEventListener("click", e=>{ if(e.target===bg && Date.now()-opened > 500) close(); });  // не закрывать от того же касания, которым открыли
   form.querySelector("[data-cancel]").addEventListener("click", close);
   const del = form.querySelector("[data-del]");
   if(del) del.addEventListener("click", ()=>{
@@ -7559,23 +7566,14 @@ async function openGear(){
   });
 }
 function adminMenu(){
-  const me = tgUser ? tgUser.id : null, isAdm = me && ADMINS.includes(me);
   openSheet({
-    title: "Настройки редактирования",
-    body: `<p class="hint">Кнопка с шестерёнкой видна только администраторам. Их Telegram ID перечислены ниже — по одному в строке.${me?` Ваш ID: <code>${me}</code>.`:""}</p>
-      <label>Telegram ID администраторов<textarea name="admins" style="min-height:90px">${esc(ADMINS.join("\n"))}</textarea></label>
-      ${me && !isAdm?`<label class="chk"><input type="checkbox" name="addme" checked> Добавить меня в администраторы</label>`:""}
-      <p class="hint">Сохранять правки всё равно можно только с токеном GitHub, так что ID — это удобство, а не защита.</p>`,
+    title: "Режим редактирования",
+    body: `<p class="hint">Вы вошли как администратор. Правки сохраняются в content.json, фото — в папку img/ репозитория ${esc(A.repo)}. Вход в этот режим — 5 нажатий подряд на логотип «Подушка».</p>
+      <label class="chk"><input type="checkbox" name="forget"> Забыть токен на этом аккаунте (после выхода понадобится ввести заново)</label>`,
     saveText: "Готово",
-    onSave: form=>{
-      const ids = val(form,"admins").split(/[\s,;]+/).map(Number).filter(n=>n>0);
-      const addme = form.querySelector('[name="addme"]');
-      if(addme && addme.checked && !ids.includes(me)) ids.push(me);
-      if(JSON.stringify(ids)!==JSON.stringify(ADMINS)){ ADMINS.splice(0, ADMINS.length, ...ids); markDirty(); }
-    }
+    onSave: form=>{ if(form.querySelector('[name="forget"]').checked){ forget(); logout(); toast("Токен удалён"); } }
   });
 }
-
 /* --- Где лежит позиция (по объекту) --- */
 function locate(u){
   for(const [gi,g] of K.entries()) for(const [ii,it] of g.items.entries()) if(it._u===u) return {t:"k", list:g.items, g, gi, ii, it};
@@ -7691,7 +7689,7 @@ function adminAct(el){
   if(a==="addGroup") return nameSheet("Новая категория", "", t=>{ groups.push({title:t, items:[]}); });
 }
 
-function rerender(){ const y = window.scrollY; routeInner(); adminFooter(); window.scrollTo(0, y); applyStop(); }
+function rerender(){ const y = window.scrollY; routeInner(); window.scrollTo(0, y); applyStop(); }
 function reloadContent(){
   return fetch("content.json?t=" + Date.now(), { cache: "no-store" })
     .then(r => r.ok ? r.json() : null)
