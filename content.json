@@ -1900,7 +1900,8 @@
         ]
        ],
        "bid": 91,
-       "pk": "Какао с зефирками"
+       "pk": "Какао с зефирками",
+       "img": "img/kakao-s-zefirkami-mvjeauil.jpg"
       },
       {
        "name": "Пряный цитрусовый какао",
@@ -1922,7 +1923,8 @@
         ]
        ],
        "bid": 92,
-       "pk": "Пряный цитрусовый какао"
+       "pk": "Пряный цитрусовый какао",
+       "img": "img/pryanyy-citrusovyy-kakao-mvjebobz.jpg"
       }
      ]
     },
@@ -1948,7 +1950,8 @@
         ]
        ],
        "bid": 93,
-       "pk": "Матча латте"
+       "pk": "Матча латте",
+       "img": "img/matcha-latte-mvjec4pw.jpg"
       },
       {
        "name": "Матча бамбл",
@@ -1982,7 +1985,8 @@
        "tags": [],
        "long": [],
        "bid": 95,
-       "pk": "Кения"
+       "pk": "Кения",
+       "img": "img/keniya-mvjecyg2.jpg"
       },
       {
        "name": "Эрл грей",
@@ -1990,7 +1994,8 @@
        "tags": [],
        "long": [],
        "bid": 96,
-       "pk": "Эрл грей"
+       "pk": "Эрл грей",
+       "img": "img/erl-grey-mvjedc2d.jpg"
       },
       {
        "name": "Черный чай с барбарисом",
@@ -1998,7 +2003,8 @@
        "tags": [],
        "long": [],
        "bid": 97,
-       "pk": "Черный чай с барбарисом"
+       "pk": "Черный чай с барбарисом",
+       "img": "img/chernyy-chay-s-barbarisom-mvjedng6.jpg"
       },
       {
        "name": "Лун цзин",
@@ -2006,7 +2012,8 @@
        "tags": [],
        "long": [],
        "bid": 98,
-       "pk": "Лун цзин"
+       "pk": "Лун цзин",
+       "img": "img/lun-czin-mvjee53h.jpg"
       },
       {
        "name": "Молочный улун",
@@ -2014,7 +2021,8 @@
        "tags": [],
        "long": [],
        "bid": 99,
-       "pk": "Молочный улун"
+       "pk": "Молочный улун",
+       "img": "img/molochnyy-ulun-mvjeef1z.jpg"
       },
       {
        "name": "Зеленый с жасмином",
@@ -2022,7 +2030,8 @@
        "tags": [],
        "long": [],
        "bid": 100,
-       "pk": "Зеленый с жасмином"
+       "pk": "Зеленый с жасмином",
+       "img": "img/zelenyy-s-zhasminom-mvjeeqoa.jpg"
       },
       {
        "name": "Зеленый персик-айва",
@@ -2030,7 +2039,8 @@
        "tags": [],
        "long": [],
        "bid": 101,
-       "pk": "Зеленый персик-айва"
+       "pk": "Зеленый персик-айва",
+       "img": "img/zelenyy-persik-ayva-mvjef43e.jpg"
       },
       {
        "name": "Да хун пао",
@@ -2161,7 +2171,8 @@
         ]
        ],
        "bid": 111,
-       "pk": "Облепиха да хун пао"
+       "pk": "Облепиха да хун пао",
+       "img": "img/oblepiha-da-hun-pao-mvjefx5p.jpg"
       },
       {
        "name": "Малина лимон",
@@ -2182,7 +2193,8 @@
         ]
        ],
        "bid": 112,
-       "pk": "Малина лимон"
+       "pk": "Малина лимон",
+       "img": "img/malina-limon-mvjegapn.jpg"
       },
       {
        "name": "Вишня апельсин",
@@ -2203,7 +2215,8 @@
         ]
        ],
        "bid": 113,
-       "pk": "Вишня апельсин"
+       "pk": "Вишня апельсин",
+       "img": "img/vishnya-apelsin-mvjeglpv.jpg"
       },
       {
        "name": "Маракуйя мята",
@@ -2226,7 +2239,8 @@
         ]
        ],
        "bid": 114,
-       "pk": "Маракуйя мята"
+       "pk": "Маракуйя мята",
+       "img": "img/marakuyya-myata-mvjehdts.jpg"
       },
       {
        "name": "Клюква кедр",
@@ -2247,7 +2261,8 @@
         ]
        ],
        "bid": 115,
-       "pk": "Клюква кедр"
+       "pk": "Клюква кедр",
+       "img": "img/klyukva-kedr-mvjehuy0.jpg"
       }
      ]
     },
