@@ -382,6 +382,80 @@ body.admin .wrap{padding-bottom:160px}
 .enc-grid > .patch:last-child:nth-child(odd) .pt-photo{aspect-ratio:2/1}
 .sp-cover{width:100%;max-height:230px;object-fit:cover;border-radius:16px;margin-top:14px;display:block}
 
+
+/* обучение и аттестация */
+.lstats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+.lstat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.lstat span{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.lstat b{font-family:var(--font-display);font-weight:400;font-size:24px;color:var(--ink)}
+.lstat b.ok{color:#2e8a5c}.lstat b.bad{color:#c8321f}
+.lstat small{font-size:12px;color:var(--muted)}
+.pbar{display:block;height:6px;border-radius:6px;background:var(--surface-2);overflow:hidden}
+.pbar u{display:block;height:100%;background:linear-gradient(90deg,#c9461a,var(--orange));border-radius:6px}
+.sec-label{margin:22px 0 8px}
+.lhint{margin:6px 0 10px;font-size:13px;color:var(--muted);line-height:1.45}
+.ltopics{display:flex;flex-wrap:wrap;gap:8px}
+.ltopics .tab,.ltabs .tab{margin:0}
+.quick{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.quick .qbtn{margin:0}
+.sj-cta{width:100%;text-align:left;margin-top:12px;background:var(--orange);color:#fff;border-radius:18px;padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.sj-cta b{font-family:var(--font-display);font-weight:400;font-size:20px}
+.sj-cta span{font-size:13px;opacity:.92}
+.lread{display:grid;gap:6px}
+.lrow{display:grid;grid-template-columns:minmax(0,1.2fr) 1fr auto;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:var(--surface);border:1px solid var(--line);text-align:left}
+.lrow span{font-weight:600;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lrow small{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.tab.read::after{content:" ✓";color:#2e8a5c}
+.tab.read[aria-selected="true"]::after{color:#fff}
+.lcount{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-top:14px}
+.lcard{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;display:grid;gap:12px;margin-top:10px;box-shadow:0 2px 10px #6b4a2a12}
+.lcard h2{font-family:var(--font-display);font-weight:400;font-size:24px;margin:0;color:var(--ink);line-height:1.15}
+.lc-img{width:100%;max-height:240px;object-fit:cover;border-radius:12px}
+.lc-img.fit{object-fit:contain;background:#fff}
+.lc-q{margin:0;color:var(--muted);font-size:15px;line-height:1.45}
+.lsub{margin:-4px 0 14px;color:var(--ink);background:var(--surface-2);border-radius:12px;padding:10px 12px;font-size:15px;line-height:1.45}
+.lbtns{display:flex;gap:10px;margin-top:14px}
+.lb{flex:1;padding:14px 12px;border-radius:999px;font-weight:700;font-size:15px;border:1.5px solid var(--line);color:var(--ink);background:var(--surface)}
+.lb.main{background:var(--orange);border-color:var(--orange);color:#fff}
+.lb.ok{border-color:#2e8a5c;color:#2e8a5c}.lb.bad{border-color:#c8321f;color:#c8321f}
+.lsend{font-size:14px;margin:6px 0 0}
+.lt-link{margin-top:6px;font-size:14px;font-weight:700;color:var(--orange);padding:0;background:none}
+.lwrong{display:grid;gap:8px}
+.lw{display:grid;gap:3px;padding:12px;border-radius:12px;background:var(--surface);border:1px solid var(--line);font-size:14px}
+.lw b{color:var(--ink)}.lw small{color:var(--muted)}
+.lw .bad{color:#c8321f}.lw .ok{color:#2e8a5c}
+.lname{display:grid;gap:6px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.lname input{font:500 16px var(--font-body);color:var(--fg);background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:12px;letter-spacing:0;text-transform:none}
+.ltop{display:grid;gap:8px}
+.ltabs{display:flex;gap:8px;flex-wrap:wrap}
+.lnote{margin:2px 0 0;font-size:13px;color:var(--muted);line-height:1.45}
+.ltlist{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.ltlist li{display:grid;grid-template-columns:34px minmax(0,1fr) auto;align-items:center;gap:8px;padding:10px 12px;border-radius:12px;background:var(--surface);border:1px solid var(--line)}
+.ltlist li.me{border-color:var(--orange);background:#e2531d12}
+.lpl{font-size:18px;text-align:center;color:var(--muted);font-weight:700}
+.lnm{font-weight:600;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lnm small{display:block;font-size:12px;font-weight:500;color:var(--muted)}
+.ltlist b{font-family:var(--font-display);font-weight:400;font-size:18px;color:var(--orange)}
+/* нет доступа */
+body.locked .nav{display:none}
+.lock{text-align:center;padding:40px 0 20px;display:grid;gap:12px;justify-items:center}
+.lock-cat{width:140px}
+.lock h1{margin:0;font-family:var(--font-display);font-weight:400;font-size:28px;color:var(--ink)}
+.lock p{margin:0;color:var(--muted);line-height:1.5}
+.lock-id{display:grid;gap:2px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 20px}
+.lock-id span{font-size:13px;color:var(--muted)}.lock-id b{font-family:var(--font-display);font-weight:400;font-size:24px;color:var(--ink);letter-spacing:.04em}
+.lock .lb{flex:none;padding:12px 22px}
+/* экран загрузки */
+#splash{position:fixed;inset:0;z-index:100;background:radial-gradient(circle at 50% 38%,#fff6ea,var(--bg) 62%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;transition:opacity .4s ease}
+#splash.out{opacity:0;pointer-events:none}
+.spl-cat{width:150px;height:auto;animation:splBob 1.6s ease-in-out infinite}
+.spl-word{width:170px;height:auto}
+.spl-bar{display:block;width:180px;height:5px;border-radius:5px;background:#2b252114;overflow:hidden}
+.spl-bar u{display:block;height:100%;width:10%;background:linear-gradient(90deg,#c9461a,var(--orange));border-radius:5px;transition:width .35s ease}
+#splash p{margin:0;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+@keyframes splBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@media (prefers-reduced-motion:reduce){.spl-cat{animation:none}}
+
 /* мем в конце теста */
 .meme{position:relative;margin:16px 0 4px;border-radius:18px;overflow:hidden;height:300px;display:grid;place-items:center;isolation:isolate}
 .meme.happy{background:radial-gradient(circle at 50% 60%,#ffe9a8,#ffb86b 70%,#ff8a4c)}
@@ -448,7 +522,7 @@ body{background-image:repeating-linear-gradient(45deg,#7a5a3006 0 2px,transparen
   <button data-go="kitchen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M5 12a7 7 0 0 0 14 0"/><path d="M12 5v2M8 6l1 2M16 6l-1 2"/><path d="M7 19h10"/></svg>Кухня</button>
   <button data-go="bar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l-1 6a3 3 0 0 1-6 0Z"/><path d="M12 12v7M8 21h8"/></svg>Бар</button>
   <button data-go="strong"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2h4v4l2 3v12a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V9l2-3Z"/><path d="M8 13h8"/></svg>Крепкое</button>
-  <button data-go="quiz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>Тест</button>
+  <button data-go="quiz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>Обучение</button>
 </div></nav>
 
 <script>
@@ -5842,6 +5916,9 @@ const K = window.KITCHEN, ALL = window.MENU;
 // Меню можно править из приложения (режим администратора) — рабочая версия лежит в content.json.
 // bid — постоянный номер позиции для стоп-листа из бота, pk — исходное название (для пар «блюдо + напиток»).
 const ADMINS = [];
+const STAFF = [];          // сотрудники: {id, name}
+const ACCESS = { on:false }; // открывать только людям из списка
+let EXAM_CFG = {};          // аттестация и рейтинг: {url, n, pass, topics}
 let _uN = 0; const nextU = () => "u" + (++_uN);
 function prepAll(assignBid){
   let n = 0;
@@ -5863,9 +5940,12 @@ function setDB(d){
   if(Array.isArray(d.kitchen)) K.splice(0, K.length, ...d.kitchen);
   if(Array.isArray(d.menu)) ALL.splice(0, ALL.length, ...d.menu);
   ADMINS.splice(0, ADMINS.length, ...(d.admins||[]));
+  STAFF.splice(0, STAFF.length, ...(d.staff||[]));
+  ACCESS.on = !!d.access; EXAM_CFG = d.exam || {};
+  try{ localStorage.setItem("pw_acc_on", ACCESS.on ? "1" : "0"); }catch(e){}
   prepAll(false); rebuildSets(); rebuildDrinkLoc(); buildPools();
 }
-function dbJSON(){ return JSON.stringify({version:1, kitchen:K, menu:ALL, admins:ADMINS}, null, 1); }
+function dbJSON(){ const o = {version:1, kitchen:K, menu:ALL, admins:ADMINS}; if(STAFF.length) o.staff = STAFF; if(ACCESS.on) o.access = true; if(Object.keys(EXAM_CFG).length) o.exam = EXAM_CFG; return JSON.stringify(o, null, 1); }
 const PAGES = { bar: {title:"Бар", lead:"Б/а, коктейли, пиво и вино — состав, вкус и описание, чтобы посоветовать напиток к блюду.", ph:"Найти напиток…"},
                strong: {title:"Крепкое", lead:"Наш ассортимент крепкого и вся барная энциклопедия: история, производство, виды, дегустация, коктейли.", ph:"Найти бренд, страну, вкус…"} };
 let kind = "bar";
@@ -6099,6 +6179,7 @@ function spirit(id, sec){
   const s = byId(id); if(!s){ barMenu("strong"); return; }
   const idx = Math.max(0, s.sections.findIndex(x=>x.id===sec));
   const cur = s.sections[idx];
+  if(cur) markRead(s.id, cur.id);
   $top.innerHTML = back + `<div class="top-title">${esc(s.name)}<small>№ ${esc(s.num)} · ${esc(cur.title)}</small></div>`;
   if (tg) { try { tg.BackButton.show(); } catch(e){} }
   setNav("strong");
@@ -6107,7 +6188,7 @@ function spirit(id, sec){
   <section class="sp-head"><span class="eyebrow">${esc(s.en)}</span><h1>${esc(s.name)}</h1><p>${esc(s.tagline)}</p>
     ${s.cover?`<img class="sp-cover" src="${esc(barImg(s.cover))}" alt="">`:""}
     <div class="facts">${(s.facts||[]).filter(f=>f[0]||f[1]).map(f=>`<div class="fact"><span>${esc(f[0])}</span><b>${esc(f[1])}</b></div>`).join("")}</div></section>
-  <div class="tabs" role="tablist">${s.sections.map(x=>`<button class="tab" role="tab" type="button" aria-selected="${x.id===cur.id}" data-spirit="${s.id}" data-sec="${x.id}">${esc(x.title)}</button>`).join("")}</div>
+  <div class="tabs" role="tablist">${s.sections.map(x=>`<button class="tab${isRead(s.id,x.id)?" read":""}" role="tab" type="button" aria-selected="${x.id===cur.id}" data-spirit="${s.id}" data-sec="${x.id}">${esc(x.title)}</button>`).join("")}</div>
   <section class="content">${cur.blocks.map(block).join("")}</section>
   <div class="pager">
     ${prev?`<button type="button" data-spirit="${s.id}" data-sec="${prev.id}">← ${esc(prev.title)}</button>`:"<span></span>"}
@@ -6318,7 +6399,7 @@ const GEN = {
 };
 GEN.all = [...GEN.kitchen, ...GEN.bar];
 GEN.hist = [()=>histQ(null)];
-const QUIZ_TOPICS = [["kitchen","Кухня","Аллергены, допы, состав, особенности блюд"],["bar","Бар","Коктейли, крепость, вино, пиво, пары к блюдам"],["all","Всё меню","Вперемешку кухня и бар"],["hist","История","Откуда взялись наши блюда и напитки"]];
+//const QUIZ_TOPICS_OLD = [["kitchen","Кухня","Аллергены, допы, состав, особенности блюд"],["bar","Бар","Коктейли, крепость, вино, пиво, пары к блюдам"],["all","Всё меню","Вперемешку кухня и бар"],["hist","История","Откуда взялись наши блюда и напитки"]];
 let QZ = null;
 function makeQuestions(topic, n=10){
   // недавние вопросы (из прошлых попыток) стараемся не повторять
@@ -6335,33 +6416,6 @@ function makeQuestions(topic, n=10){
 function lsGet(k){ try{ return JSON.parse(localStorage.getItem(k)); }catch(e){ return null; } }
 function lsSet(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
 function tgName(){ try{ const u=tg&&tg.initDataUnsafe&&tg.initDataUnsafe.user; return u?[u.first_name,u.last_name].filter(Boolean).join(" "):""; }catch(e){ return ""; } }
-function quiz(){
-  topbar("Тренажёр"); setNav("quiz"); QZ=null;
-  const best = lsGet("pd_best")||{};
-  $view.innerHTML = `<div class="sp-head"><span class="eyebrow">Подготовка к аттестации</span><h1>Тренажёр</h1><p>10 случайных вопросов по нашему меню и его истории — каждый раз новые. После ответа сразу видно, где правильно. Результат можно отправить управляющему.</p></div>
-  <div class="qz-topics">${QUIZ_TOPICS.map(t=>`<button type="button" class="qbtn" data-qz="${t[0]}"><b>${t[1]}</b><span>${t[2]}</span>${best[t[0]]!=null?`<em>Лучший результат: ${best[t[0]]} из 10</em>`:""}</button>`).join("")}</div>`;
-}
-function startQuiz(topic){ QZ={topic, qs:makeQuestions(topic), i:0, score:0, wrong:[], answered:false}; showQ(); }
-function showQ(){
-  const q=QZ.qs[QZ.i]; QZ.answered=false;
-  $view.innerHTML = `<div class="qz-top"><span class="eyebrow">Вопрос ${QZ.i+1} из ${QZ.qs.length}</span><span class="qz-score">Верно: ${QZ.score}</span></div>
-  <div class="qz-bar"><i style="width:${(QZ.i)/QZ.qs.length*100}%"></i></div>
-  <h2 class="qz-q">${esc(q.q)}</h2>
-  <div class="qz-opts">${q.opts.map((o,i)=>`<button type="button" class="qz-o" data-ans="${i}">${esc(o)}</button>`).join("")}</div>
-  <div id="qzfb"></div>`;
-  window.scrollTo(0,0);
-}
-function answer(i){
-  if(QZ.answered) return; QZ.answered=true;
-  const q=QZ.qs[QZ.i], ok = q.opts[i]===q.a;
-  if(ok) QZ.score++; else QZ.wrong.push(q);
-  try{ tg && tg.HapticFeedback.notificationOccurred(ok?"success":"error"); }catch(e){}
-  document.querySelectorAll(".qz-o").forEach((b,j)=>{ b.disabled=true; if(q.opts[j]===q.a) b.classList.add("right"); else if(j===i) b.classList.add("wrong"); });
-  const last = QZ.i===QZ.qs.length-1;
-  document.getElementById("qzfb").innerHTML = `<div class="qz-fb ${ok?"ok":"no"}"><b>${ok?"Верно!":"Не совсем."}</b><p>${esc(q.why)}</p></div>
-    <button type="button" class="qz-next" data-next>${last?"Посмотреть результат":"Дальше →"}</button>`;
-  document.querySelector("[data-next]").scrollIntoView({block:"nearest",behavior:"smooth"});
-}
 
 // ---------- мем по результату
 const MEMES = {
@@ -6389,33 +6443,9 @@ function memeHTML(score, n){
     <div class="fx">${fx}</div>${mood==="sad"?'<div class="cloud"></div>':""}
     <img src="${CAT}" alt=""><div class="cap mtop">${esc(top)}</div><div class="cap mbot">${esc(bot)}</div></div>`;
 }
-function resultQ(){
-  const {score, qs, wrong, topic} = QZ, n=qs.length;
-  const best = lsGet("pd_best")||{}; if(best[topic]==null || score>best[topic]){ best[topic]=score; lsSet("pd_best",best); }
-  const tname = QUIZ_TOPICS.find(t=>t[0]===topic)[1];
-  const verdict = score>=9?"Отлично, готов к аттестации!":score>=7?"Хорошо, но есть что повторить.":score>=5?"Неплохо — загляни в разбор ошибок.":"Стоит ещё раз пройтись по меню.";
-  try{ tg && tg.HapticFeedback.notificationOccurred(score/n>=.5?"success":"error"); }catch(e){}
-  $view.innerHTML = `<div class="sp-head"><span class="eyebrow">Тренажёр · ${esc(tname)}</span><h1>${score} из ${n}</h1><p>${verdict}</p></div>
-  ${memeHTML(score, n)}
-  <label class="eyebrow" for="qzname" style="display:block;margin-top:16px">Ваше имя</label>
-  <input id="qzname" class="search" style="margin-top:6px" placeholder="Имя и фамилия" value="${esc(lsGet("pd_name")||tgName())}">
-  <div class="qz-actions"><button type="button" class="qz-next" data-send>Отправить результат управляющему</button>
-  <button type="button" class="qbtn" data-qz="${topic}"><b>Ещё раз</b><span>Новые 10 вопросов</span></button></div>
-  ${wrong.length?`<div class="ok-grp" style="margin-top:20px">Разбор ошибок</div><div class="cards">${wrong.map(q=>`<div class="card"><b>${esc(q.q)}</b><p>Правильно: ${esc(q.a)}</p></div>`).join("")}</div>`:""}`;
-  window.scrollTo(0,0);
-}
-function sendResult(){
-  const name = (document.getElementById("qzname").value||"").trim() || "Без имени"; lsSet("pd_name", name);
-  const tname = QUIZ_TOPICS.find(t=>t[0]===QZ.topic)[1];
-  const d = new Date(), date = d.toLocaleDateString("ru-RU")+" "+d.toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"});
-  const text = `📝 Тренажёр «Подушки»\n${name}\nТема: ${tname}\nРезультат: ${QZ.score} из ${QZ.qs.length}\n${date}` + (QZ.wrong.length?`\n\nОшибки:\n${QZ.wrong.map(q=>"• "+q.q).join("\n")}`:"");
-  const url = `https://t.me/share/url?url=${encodeURIComponent(location.origin+location.pathname)}&text=${encodeURIComponent(text)}`;
-  try{ if(tg && tg.openTelegramLink){ tg.openTelegramLink(url); return; } }catch(e){}
-  window.open(url, "_blank");
-}
 
 // ---------- Навигация (hash — для кнопки «Назад» в Telegram)
-function route(){ routeInner(); applyStop(); }
+function route(){ if(!booted) return; if(!allowed()){ lockScreen(); return; } document.body.classList.remove("locked"); routeInner(); applyStop(); }
 // Вход для администратора: 5 нажатий подряд на логотип «Подушка» (пауза больше 1,5 с — счёт заново).
 // Считаем касания по pointerup: на телефоне частые тапы иначе съедает жест увеличения.
 let logoTaps = 0, logoTimer = null;
@@ -6434,7 +6464,7 @@ function routeInner(){
   else if(a==="strong") barMenu("strong");
   else if(a==="s") spirit(b,c);
   else if(a==="d"){ encMode="menu"; barMenu(b==="spirits"?"strong":"bar", b, c, d); }
-  else if(a==="quiz") quiz();
+  else if(a==="quiz") learnRoute(b);
   else if(a==="admin"){ history.replaceState(null,"",location.pathname+location.search); kitchen(); openGear(); }
   else kitchen();
 }
@@ -6446,9 +6476,8 @@ document.addEventListener("click", e=>{
   if(el.dataset.act){ adminAct(el); return; }
   if(el.dataset.back!==undefined){ goBack(); return; }
   if(el.dataset.drink){ go("d-"+el.dataset.drink); return; }
-  if(el.dataset.qz){ haptic(); startQuiz(el.dataset.qz); return; }
   if(el.dataset.ans!==undefined){ answer(+el.dataset.ans); return; }
-  if(el.dataset.next!==undefined){ haptic(); if(QZ.i<QZ.qs.length-1){ QZ.i++; showQ(); } else resultQ(); return; }
+  if(el.dataset.next!==undefined){ haptic(); nextQ(); return; }
   if(el.dataset.send!==undefined){ haptic(); sendResult(); return; }
   if(el.dataset.pick!==undefined){ const box=el.closest(".picker"); box.querySelectorAll(".pk").forEach(b=>b.setAttribute("aria-pressed", b===el)); box.querySelectorAll(".pk-card").forEach(c=>c.hidden=c.dataset.card!==el.dataset.pick); haptic(); return; }
   if(el.dataset.reveal!==undefined){ el.nextElementSibling.hidden=false; el.hidden=true; haptic(); return; }
@@ -6677,12 +6706,39 @@ async function openGear(){
   });
 }
 function adminMenu(){
+  const ex = EXAM_CFG, tps = ex.topics && ex.topics.length ? ex.topics : LTOPICS.map(x=>x[0]);
   openSheet({
-    title: "Режим редактирования",
-    body: `<p class="hint">Вы вошли как администратор. Правки сохраняются в content.json, фото — в папку img/ репозитория ${esc(A.repo)}. Вход в этот режим — 5 нажатий подряд на логотип «Подушка».</p>
-      <label class="chk"><input type="checkbox" name="forget"> Забыть токен на этом аккаунте (после выхода понадобится ввести заново)</label>`,
+    title: "Настройки",
+    body: `<p class="hint">Вы вошли как администратор. Правки сохраняются в content.json, фото — в папку img/ репозитория ${esc(A.repo)}. Вход — 5 нажатий подряд на логотип «Подушка».</p>
+      <div class="sec-label eyebrow" style="margin-top:6px">Доступ сотрудников</div>
+      <label class="chk"><input type="checkbox" name="access"${ACCESS.on?" checked":""}> Открывать шпаргалку только людям из списка</label>
+      <label>Сотрудники: Telegram ID и имя<textarea name="staff" style="min-height:130px" placeholder="123456789 Оля&#10;987654321 Гоша">${esc(STAFF.map(s=>s.id+(s.name?" "+s.name:"")).join("\n"))}</textarea></label>
+      <p class="hint">По одному человеку в строке. Новый сотрудник открывает шпаргалку в Telegram, видит экран «Нет доступа» со своим ID и присылает его вам. Имя отсюда попадёт в аттестацию и рейтинг.${tgUser?` Ваш ID: <code>${tgUser.id}</code>.`:""}</p>
+      <div class="sec-label eyebrow" style="margin-top:6px">Аттестация и рейтинг</div>
+      <label>Ссылка на рейтинг (Google-скрипт)<input name="url" value="${esc(ex.url||"")}" placeholder="https://script.google.com/macros/s/…/exec"></label>
+      <div style="display:flex;gap:10px"><label style="flex:1;min-width:0">Вопросов<input name="n" inputmode="numeric" value="${esc(String(ex.n||40))}"></label>
+        <label style="flex:1;min-width:0">Проходной, %<input name="pass" inputmode="numeric" value="${esc(String(ex.pass||80))}"></label></div>
+      <label style="margin-bottom:-4px">Темы аттестации</label>
+      ${LTOPICS.map(x=>`<label class="chk"><input type="checkbox" name="topic" value="${x[0]}"${tps.includes(x[0])?" checked":""}> ${x[1]}</label>`).join("")}
+      <div class="sec-label eyebrow" style="margin-top:6px">Токен</div>
+      <label class="chk"><input type="checkbox" name="forget"> Забыть токен на этом аккаунте и выйти</label>`,
     saveText: "Готово",
-    onSave: form=>{ if(form.querySelector('[name="forget"]').checked){ forget(); logout(); toast("Токен удалён"); } }
+    onSave: (form, fail)=>{
+      const url = val(form,"url").trim();
+      if(url && !/^https:\/\/script\.google\.com\/.+\/exec$/.test(url)){ fail("Ссылка должна начинаться с https://script.google.com/ и заканчиваться на /exec."); return false; }
+      const tp = [...form.querySelectorAll('[name="topic"]:checked')].map(x=>x.value);
+      if(!tp.length){ fail("Отметьте хотя бы одну тему аттестации."); return false; }
+      const n = Math.max(5, Math.min(150, parseInt(val(form,"n"),10)||40)), pass = Math.max(10, Math.min(100, parseInt(val(form,"pass"),10)||80));
+      const nx = { n, pass }; if(url) nx.url = url; if(tp.length < LTOPICS.length) nx.topics = tp;
+      let dirty = false;
+      if(JSON.stringify(nx) !== JSON.stringify(EXAM_CFG)){ EXAM_CFG = nx; dirty = true; }
+      const staff = val(form,"staff").split("\n").map(l=>l.trim().match(/^(\d{3,})[\s,;:—-]*(.*)$/)).filter(Boolean).map(m=>m[2].trim()?{ id:Number(m[1]), name:m[2].trim() }:{ id:Number(m[1]) });
+      if(JSON.stringify(staff) !== JSON.stringify(STAFF)){ STAFF.splice(0, STAFF.length, ...staff); dirty = true; }
+      const acc = form.querySelector('[name="access"]').checked;
+      if(acc !== ACCESS.on){ ACCESS.on = acc; dirty = true; }
+      if(dirty){ markDirty(); rerender(); }
+      if(form.querySelector('[name="forget"]').checked){ forget(); logout(); toast("Токен удалён"); }
+    }
   });
 }
 /* --- Где лежит позиция (по объекту) --- */
@@ -6800,16 +6856,330 @@ function adminAct(el){
   if(a==="addGroup") return nameSheet("Новая категория", "", t=>{ groups.push({title:t, items:[]}); });
 }
 
-function rerender(){ const y = window.scrollY; routeInner(); window.scrollTo(0, y); applyStop(); }
+/* ====================================================================
+   ОБУЧЕНИЕ И АТТЕСТАЦИЯ — как в барном приложении, но по меню официантов.
+   Прогресс хранится на телефоне, рейтинг — в Google-скрипте (ссылка в настройках).
+   ==================================================================== */
+const LS = {
+  get(k, d){ try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch(e){ return d; } },
+  set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
+};
+const plural = (n, a, b, c) => { const m = Math.abs(n) % 100, k = m % 10; return m > 10 && m < 20 ? c : k === 1 ? a : k >= 2 && k <= 4 ? b : c; };
+const pct = (a, b) => b ? Math.round(a*100/b) : 0;
+const EXAMW = () => EXAM_CFG;
+const nowStr = () => new Date().toLocaleString("ru-RU", { day:"2-digit", month:"2-digit", year:"numeric", hour:"2-digit", minute:"2-digit" });
+
+// --- прочитанные вкладки энциклопедии
+function markRead(sid, sec){ const r = LS.get("pw_read", {}); if(!r[sid+":"+sec]){ r[sid+":"+sec] = 1; LS.set("pw_read", r); } }
+const isRead = (sid, sec) => !!LS.get("pw_read", {})[sid+":"+sec];
+function readStats(){
+  const r = LS.get("pw_read", {});
+  const per = S.map(s=>{ const t=(s.sections||[]).length, d=(s.sections||[]).filter(x=>r[s.id+":"+x.id]).length; return { s, t, d }; });
+  return { per, total: per.reduce((k,x)=>k+x.t,0), done: per.reduce((k,x)=>k+x.d,0) };
+}
+
+// --- темы
+const LTOPICS = [["kitchen","Кухня","состав, аллергены, допы"],["bar","Бар","коктейли, вино, пиво, крепость"],["story","Рассказ для гостя","узнай позицию по описанию"],["hist","История","откуда взялись блюда и напитки"]];
+const learnTopics = () => { const t = LS.get("pw_topics", null); return t && t.length ? t.filter(id=>LTOPICS.some(x=>x[0]===id)) : LTOPICS.map(x=>x[0]); };
+
+// --- «рассказ для гостя»: угадай позицию по описанию (название в тексте скрыто)
+const STOPW_L = new Set(["с","и","в","на","из","по","для","от"]);
+const cutText = (t, max) => { t = String(t||"").replace(/\s+/g," ").trim(); if(t.length <= max) return t; const c = t.slice(0, max); const k = Math.max(c.lastIndexOf(". "), c.lastIndexOf("! ")); return (k > 80 ? c.slice(0, k+1) : c.replace(/\s+\S*$/,"") + "…"); };
+function maskName(text, name){
+  let t = text; const words = String(name).replace(/[«»"()]/g," ").split(/[\s\-–—,/]+/).filter(w=>w.length >= 4 && !STOPW_L.has(w.toLowerCase()));
+  words.forEach(w=>{ const stem = w.length > 5 ? w.slice(0, w.length - 2) : w; t = t.replace(new RegExp(stem.replace(/[.*+?^${}()|[\]\\]/g,"\\$&") + "[а-яёa-z]*", "gi"), "…"); });
+  return t.replace(/(…)([\s,.\-–—]*…)+/g, "…");
+}
+function storyPool(){
+  const out = [];
+  KF.forEach(it=>{ if(it.desc && it.desc.length >= 60) out.push({ name: it.name, text: cutText(it.desc, 240), group: "k" }); });
+  BF.forEach(x=>{ if(x.s.id==="spirits") return; const l = (x.it.long||[]).find(f=>f[0]==="Описание") || (x.it.long||[]).find(f=>f[0]==="Интересная информация");
+    if(l && String(l[1]).length >= 60) out.push({ name: x.it.name, text: cutText(l[1], 240), group: "b:" + x.s.id }); });
+  return out.map(x=>({ ...x, text: maskName(x.text, x.name) })).filter(x=>x.text.split("…").length < 5);
+}
+let STORY = null;
+GEN.story = [()=>{ STORY = STORY || storyPool(); if(STORY.length < 4) return null;
+  const x = pick(STORY); const d = distract(x.name, STORY.filter(y=>y.group===x.group && y.name!==x.name).map(y=>y.name));
+  return d && { q: "О какой позиции этот рассказ для гостя?", sub: x.text, a: x.name, o: d, why: `Это «${x.name}».`, topic: "story" }; }];
+
+// --- набор вопросов из нескольких тем
+function makeQuiz(topics, n){
+  topics = topics && topics.length ? topics : LTOPICS.map(t=>t[0]);
+  const share = { kitchen: .4, bar: .3, story: .15, hist: .15 }, act = topics.filter(t=>GEN[t] && GEN[t].length);
+  const tot = act.reduce((k,t)=>k+share[t],0) || 1;
+  const recent = new Set(LS.get("pd_recent", []));
+  const qs = [], seen = new Set();
+  const take = (t, want)=>{ let got = 0, guard = 0;
+    while(got < want && guard++ < want*80){ const q = pick(GEN[t])(); if(!q) continue;
+      const key = q.q + "|" + (q.sub||""); if(seen.has(key)) continue;
+      if(recent.has(key) && guard < want*40) continue;
+      const opts = shuffle([q.a, ...q.o]); if(new Set(opts).size !== opts.length) continue;
+      seen.add(key); qs.push({ ...q, opts, topic: q.topic || t }); got++; }
+    return got; };
+  act.forEach(t=>take(t, Math.round(n*share[t]/tot)));
+  for(const t of shuffle(act)){ if(qs.length >= n) break; take(t, n - qs.length); }
+  LS.set("pd_recent", [...qs.map(q=>q.q + "|" + (q.sub||"")), ...recent].slice(0, 200));
+  return shuffle(qs).slice(0, n);
+}
+
+// --- карточки по меню
+function cardPool(){
+  const tp = learnTopics(), out = [];
+  if(tp.includes("kitchen") || tp.includes("story") || tp.includes("hist")) KF.forEach(it=>out.push({ it, kind:"k", group: (K.find(g=>g.items.includes(it))||{}).title || "Кухня" }));
+  if(tp.includes("bar")) BF.forEach(x=>{ if(x.s.id!=="spirits") out.push({ it: x.it, kind:"b", group: x.s.title + " · " + x.g.title }); });
+  return out;
+}
+const cardKey = x => x.kind + ":" + x.it.name;
+let LC = null;
+function learnCards(){
+  topbar("Карточки"); setNav("quiz");
+  const pool = cardPool(), known = LS.get("pw_known", {});
+  if(!pool.length){ $view.innerHTML = `<p class="empty">Выберите темы на экране «Обучение».</p>`; return; }
+  const key = learnTopics().join();
+  if(!LC || LC.key !== key){ LC = { key, order: shuffle(pool).sort((a,b)=>(known[cardKey(a)]||0)-(known[cardKey(b)]||0)), i: 0, open: false }; }
+  if(LC.i >= LC.order.length){ LC = null; return learnCards(); }
+  const x = LC.order[LC.i], it = x.it, lvl = known[cardKey(x)]||0;
+  const learned = pool.filter(y=>(known[cardKey(y)]||0) >= 2).length;
+  let back = "";
+  if(x.kind==="k"){
+    back = `${it.comp.length?`<div class="fld"><span>Состав</span><ul>${it.comp.map(c=>`<li>${esc(c)}</li>`).join("")}</ul></div>`:""}
+      ${it.allerg?`<div class="al-box"><span>Основные аллергены</span><p>${esc(it.allerg)}</p></div>`:""}
+      ${it.dops?`<div class="sell"><span>Предложить допом</span><p>${esc(it.dops)}</p></div>`:""}
+      ${it.notes.length?`<div class="warn"><span>Важно знать</span><ul>${it.notes.map(n=>`<li>${esc(n)}</li>`).join("")}</ul></div>`:""}`;
+  } else {
+    const keep = ["Состав","Сортовой состав","Во вкусе","Описание"];
+    back = `${it.chips.length?`<div class="specs">${it.chips.map(c=>`<div class="spec"><span>${esc(c[0])}</span><b>${esc(c[1])}</b></div>`).join("")}</div>`:""}
+      ${it.long.filter(f=>keep.includes(f[0])).map(f=>`<div class="fld"><span>${esc(f[0])}</span><p>${esc(cutText(f[1], 320))}</p></div>`).join("")}`;
+  }
+  const ask = x.kind==="k" ? "Вспомните состав, аллергены и что предложить допом" : "Вспомните состав, вкус и крепость";
+  $view.innerHTML = `<div class="lcount"><span>Карточка ${LC.i+1} из ${LC.order.length}</span><span>выучено ${learned}/${pool.length}</span></div>
+    <div class="lcard">
+      ${it.img?`<img class="lc-img${/bottle-/.test(it.img)?" fit":""}" src="${esc(src(it.img))}" alt="">`:""}
+      <span class="eyebrow">${esc(x.group)}${lvl>=2?" · выучено":""}</span>
+      <h2>${esc(it.name)}</h2>
+      ${LC.open ? back || `<p class="lc-q">В шпаргалке пока нет подробностей по этой позиции.</p>` : `<p class="lc-q">${ask}, потом проверьте себя.</p>`}
+    </div>
+    <div class="lbtns">${LC.open
+      ? `<button type="button" class="lb bad" data-lcard="0">Не вспомнил</button><button type="button" class="lb ok" data-lcard="1">Помню</button>`
+      : `<button type="button" class="lb main" data-lcard="show">Показать ответ</button>`}</div>`;
+}
+function cardAnswer(v){
+  if(v==="show"){ LC.open = true; return learnCards(); }
+  const known = LS.get("pw_known", {}), k = cardKey(LC.order[LC.i]);
+  known[k] = v==="1" ? Math.min(5, (known[k]||0) + 1) : 0; LS.set("pw_known", known);
+  if(v==="0") LC.order.push(LC.order[LC.i]);
+  LC.i++; LC.open = false; learnCards(); window.scrollTo(0,0);
+}
+
+// --- главный экран обучения
+function quiz(){
+  topbar("Обучение"); setNav("quiz"); QZ = null;
+  const rs = readStats(), pool = cardPool(), known = LS.get("pw_known", {});
+  const learned = pool.filter(x=>(known[cardKey(x)]||0) >= 2).length;
+  const best = LS.get("pw_best", null), last = LS.get("pw_exam_last", null), ex = EXAMW(), tp = learnTopics();
+  $view.innerHTML = `<section class="sp-head"><span class="eyebrow">Обучение и аттестация</span><h1>Мой прогресс</h1><p>Меню, энциклопедия, тесты и аттестация. Прогресс хранится на этом телефоне.</p></section>
+    <div class="lstats">
+      <div class="lstat"><span>Меню</span><b>${pct(learned, pool.length)}%</b><i class="pbar"><u style="width:${pct(learned, pool.length)}%"></u></i><small>выучено ${learned} из ${pool.length}</small></div>
+      <div class="lstat"><span>Энциклопедия</span><b>${pct(rs.done, rs.total)}%</b><i class="pbar"><u style="width:${pct(rs.done, rs.total)}%"></u></i><small>${rs.done} из ${rs.total} вкладок</small></div>
+      <div class="lstat"><span>Лучший тест</span><b>${best ? best.pct + "%" : "—"}</b><small>${best ? esc(best.date) : "ещё не проходили"}</small></div>
+      <div class="lstat"><span>Аттестация</span><b class="${last ? (last.passed ? "ok" : "bad") : ""}">${last ? (last.passed ? "Сдана" : "Не сдана") : "—"}</b><small>${last ? esc(last.date) + " · " + last.pct + "%" : "ещё не проходили"}</small></div>
+    </div>
+    <div class="sec-label eyebrow">Рейтинг официантов</div>
+    ${ex.url ? `<div id="ltop" class="ltop"><p class="lnote">Загружаем рейтинг…</p></div>`
+      : `<div class="ltop"><p class="lnote">Рейтинг пока не подключён.${A.on ? " Откройте настройки (5 нажатий на логотип) и вставьте ссылку на Google-скрипт." : " Его включает администратор."}</p></div>`}
+    <div class="sec-label eyebrow">Тренажёр</div>
+    <div class="ltopics" role="group" aria-label="Темы тренажёра">${LTOPICS.map(t=>`<button class="tab" type="button" data-ltopic="${t[0]}" aria-selected="${tp.includes(t[0])}">${t[1]}</button>`).join("")}</div>
+    <p class="lhint">Темы: ${esc(LTOPICS.filter(t=>tp.includes(t[0])).map(t=>t[1].toLowerCase()+" — "+t[2]).join("; "))}.</p>
+    <div class="quick">
+      <button class="qbtn" type="button" data-go="quiz-cards"><b>Карточки</b><span>Вспомнить состав, аллергены и допы</span></button>
+      <button class="qbtn" type="button" data-go="quiz-test"><b>Тест</b><span>10 вопросов с подсказками и мемом</span></button>
+      <button class="qbtn" type="button" data-go="quiz-big" style="grid-column:span 2"><b>Большой тест · 75 вопросов</b><span>Всё меню и история, с подсказками</span></button>
+    </div>
+    <button class="sj-cta" type="button" data-go="quiz-exam"><b>Аттестация</b><span>${ex.n||40} вопросов без подсказок, проходной балл ${ex.pass||80}%.${ex.url ? " Лучший результат попадёт в рейтинг." : ""}</span></button>
+    <div class="sec-label eyebrow">Энциклопедия</div>
+    <div class="lread">${rs.per.map(x=>`<button type="button" class="lrow" data-spirit="${esc(x.s.id)}"><span>${esc(x.s.name)}</span><i class="pbar"><u style="width:${pct(x.d,x.t)}%"></u></i><small>${x.d}/${x.t}</small></button>`).join("")}</div>`;
+  if(ex.url) loadTop().then(t=>{ const box = document.getElementById("ltop"); if(box) box.innerHTML = topHtml(t); });
+}
+
+// --- тест (с подсказками) и аттестация (без)
+function startTest(n){ QZ = { kind:"test", qs: makeQuiz(learnTopics(), n), i:0, score:0, picks:[], wrong:[], answered:false }; showQ(); }
+function startExam(name){
+  const ex = EXAMW();
+  QZ = { kind:"exam", name, qs: makeQuiz(ex.topics && ex.topics.length ? ex.topics : null, ex.n||40), i:0, score:0, picks:[], wrong:[], answered:false };
+  showQ();
+}
+function showQ(){
+  if(!QZ.qs.length){ $view.innerHTML = `<p class="empty">Не получилось составить вопросы. Выберите другие темы.</p>`; return; }
+  const q = QZ.qs[QZ.i], exam = QZ.kind==="exam"; QZ.answered = false;
+  topbar(exam ? "Аттестация" : "Тест"); setNav("quiz");
+  $view.innerHTML = `<div class="qz-top"><span class="eyebrow">Вопрос ${QZ.i+1} из ${QZ.qs.length}</span><span class="qz-score">${exam ? "без подсказок" : "Верно: " + QZ.score}</span></div>
+  <div class="qz-bar"><i style="width:${(QZ.i)/QZ.qs.length*100}%"></i></div>
+  <h2 class="qz-q">${esc(q.q)}</h2>${q.sub?`<p class="lsub">${esc(q.sub)}</p>`:""}
+  <div class="qz-opts">${q.opts.map((o,i)=>`<button type="button" class="qz-o" data-ans="${i}">${esc(o)}</button>`).join("")}</div>
+  <div id="qzfb"></div>`;
+  window.scrollTo(0,0);
+}
+function answer(i){
+  if(QZ.answered) return; QZ.answered = true;
+  const q = QZ.qs[QZ.i], ok = q.opts[i]===q.a;
+  QZ.picks[QZ.i] = q.opts[i];
+  if(ok) QZ.score++; else QZ.wrong.push({ q, p: q.opts[i] });
+  if(QZ.kind==="exam"){ haptic(); return nextQ(); }
+  try{ tg && tg.HapticFeedback.notificationOccurred(ok?"success":"error"); }catch(e){}
+  document.querySelectorAll(".qz-o").forEach((b,j)=>{ b.disabled=true; if(q.opts[j]===q.a) b.classList.add("right"); else if(j===i) b.classList.add("wrong"); });
+  const last = QZ.i===QZ.qs.length-1;
+  document.getElementById("qzfb").innerHTML = `<div class="qz-fb ${ok?"ok":"no"}"><b>${ok?"Верно!":"Не совсем."}</b><p>${esc(q.why)}</p></div>
+    <button type="button" class="qz-next" data-next>${last?"Посмотреть результат":"Дальше →"}</button>`;
+  document.querySelector("[data-next]").scrollIntoView({block:"nearest",behavior:"smooth"});
+}
+function nextQ(){ if(QZ.i < QZ.qs.length-1){ QZ.i++; showQ(); } else resultQ(); }
+function resultQ(){
+  const exam = QZ.kind==="exam", ex = EXAMW(), n = QZ.qs.length, score = QZ.score, p = pct(score, n);
+  const passed = p >= (exam ? (ex.pass||80) : 80);
+  if(!QZ.saved){
+    QZ.saved = true; QZ.result = { date: nowStr(), pct: p, score, total: n, passed };
+    if(exam) LS.set("pw_exam_last", QZ.result);
+    else { const b = LS.get("pw_best", null); if(!b || p >= b.pct) LS.set("pw_best", { pct: p, date: QZ.result.date }); }
+    try{ tg && tg.HapticFeedback.notificationOccurred(p>=50?"success":"error"); }catch(e){}
+    sendToRating();
+  }
+  const verdict = exam ? (passed ? "Аттестация сдана!" : `Не сдана — нужно ${ex.pass||80}%. Повторите меню и попробуйте снова.`)
+    : p>=90?"Отлично, готов к аттестации!":p>=70?"Хорошо, но есть что повторить.":p>=50?"Неплохо — загляни в разбор ошибок.":"Стоит ещё раз пройтись по меню.";
+  const st = QZ.sendState;
+  topbar(exam ? "Аттестация" : "Тест"); setNav("quiz");
+  $view.innerHTML = `<div class="sp-head"><span class="eyebrow">${exam ? "Аттестация" : "Тест"}</span><h1>${score} из ${n} · ${p}%</h1><p>${verdict}</p>
+      ${st && st!=="off" ? `<p class="lsend">${st==="ok" ? (exam ? "Результат в рейтинге ✓" : `+${score} ${plural(score,"очко","очка","очков")} в рейтинг тренировок ✓`) : st==="err" ? "Не удалось отправить в рейтинг." : "Отправляем в рейтинг…"}</p>${st==="err"?`<button type="button" class="lt-link" data-lresend>Отправить ещё раз</button>`:""}` : ""}</div>
+    ${memeHTML(n===10 ? score : Math.round(p/10), 10)}
+    <div class="lbtns"><button type="button" class="lb" data-go="quiz">К прогрессу${ex.url ? " и рейтингу" : ""}</button><button type="button" class="lb main" data-lagain="${QZ.kind}">${exam ? "Пройти заново" : "Новый тест"}</button></div>
+    <button type="button" class="qbtn" data-send style="margin-top:10px;width:100%"><b>Отправить результат управляющему</b><span>Сообщением в Telegram</span></button>
+    ${QZ.wrong.length ? `<div class="sec-label eyebrow">Ошибки · ${QZ.wrong.length}</div>
+      <div class="lwrong">${QZ.wrong.map(w=>`<div class="lw"><b>${esc(w.q.q)}</b>${w.q.sub?`<small>${esc(w.q.sub)}</small>`:""}<span class="bad">Ваш ответ: ${esc(w.p||"—")}</span><span class="ok">Верно: ${esc(w.q.a)}</span></div>`).join("")}</div>` : ""}`;
+  window.scrollTo(0,0);
+}
+function sendResult(){
+  const name = QZ.name || staffName() || "Без имени";
+  const text = `📝 ${QZ.kind==="exam" ? "Аттестация" : "Тест"} «Подушки»\n${name}\nРезультат: ${QZ.score} из ${QZ.qs.length} (${pct(QZ.score, QZ.qs.length)}%)${QZ.kind==="exam" ? (QZ.result && QZ.result.passed ? " — сдана" : " — не сдана") : ""}\n${nowStr()}` + (QZ.wrong.length?`\n\nОшибки:\n${QZ.wrong.slice(0,20).map(w=>"• "+w.q.q).join("\n")}`:"");
+  const url = `https://t.me/share/url?url=${encodeURIComponent(location.origin+location.pathname)}&text=${encodeURIComponent(text)}`;
+  try{ if(tg && tg.openTelegramLink){ tg.openTelegramLink(url); return; } }catch(e){}
+  window.open(url, "_blank");
+}
+
+// --- аттестация: имя
+function staffName(){
+  if(!tgUser) return LS.get("pw_name", "");
+  const s = STAFF.find(x=>x.id===tgUser.id);
+  return (s && s.name) || [tgUser.first_name, tgUser.last_name].filter(Boolean).join(" ");
+}
+function examStart(){
+  topbar("Аттестация"); setNav("quiz");
+  const ex = EXAMW(), tps = ex.topics && ex.topics.length ? LTOPICS.filter(t=>ex.topics.includes(t[0])) : LTOPICS;
+  const locked = tgUser && STAFF.some(x=>x.id===tgUser.id && x.name);
+  $view.innerHTML = `<section class="sp-head"><span class="eyebrow">Аттестация</span><h1>Проверка знаний</h1>
+      <p>${ex.n||40} вопросов: ${esc(tps.map(t=>t[1].toLowerCase()).join(", "))}. Подсказок нет, правильные ответы покажем в конце. Проходной балл — ${ex.pass||80}%.${ex.url ? " Лучший результат попадёт в рейтинг." : ""}</p></section>
+    <div class="lcard"><label class="lname">Ваше имя<input id="lname" value="${esc(staffName())}" placeholder="Имя и фамилия"${locked ? " readonly" : ""}></label></div>
+    <div class="lbtns"><button type="button" class="lb main" data-lexam>Начать аттестацию</button></div>`;
+}
+
+// --- рейтинг: общий для всех, хранится в Google-скрипте
+function post(payload){
+  return fetch(EXAMW().url, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) });
+}
+function sendToRating(){
+  if(!EXAMW().url){ QZ.sendState = "off"; return; }
+  const r = QZ.result;
+  QZ.payload = { action: "result", kind: QZ.kind, name: QZ.name || staffName() || "Без имени", id: tgUser ? tgUser.id : "", score: r.score, total: r.total, pct: r.pct, passed: r.passed, initData: (tg && tg.initData) || "" };
+  QZ.sendState = "wait";
+  const me = QZ;
+  post(QZ.payload).then(()=>{ me.sendState = "ok"; TOP = null; }).catch(()=>{ me.sendState = "err"; })
+    .then(()=>{ if(QZ === me && /^#quiz-(exam|test|big)$/.test(location.hash)) resultQ(); });
+}
+let TOP = null, topAt = 0, topTab = "exam";
+function loadTop(){
+  if(TOP && Date.now() - topAt < 60000) return Promise.resolve(TOP);
+  return fetch(EXAMW().url + "?action=top&t=" + Date.now()).then(r=>r.json()).then(d=>{ TOP = d; topAt = Date.now(); return d; }).catch(()=>null);
+}
+function topHtml(t){
+  if(!t) return `<p class="lnote">Не удалось загрузить рейтинг. Проверьте интернет.</p>`;
+  const me = tgUser ? String(tgUser.id) : "", list = topTab === "exam" ? (t.exam||[]) : (t.train||[]);
+  const medal = i => i===0 ? "🥇" : i===1 ? "🥈" : i===2 ? "🥉" : String(i+1);
+  return `<div class="ltabs"><button class="tab" type="button" data-ltop="exam" aria-selected="${topTab==="exam"}">Аттестация · лучший %</button><button class="tab" type="button" data-ltop="train" aria-selected="${topTab==="train"}">Тренировки · ${esc(t.month||"месяц")}</button></div>
+    ${list.length ? `<ol class="ltlist">${list.map((x,i)=>`<li class="${String(x.id)===me?"me":""}"><span class="lpl">${medal(i)}</span><span class="lnm">${esc(x.name)}${topTab==="exam"&&x.attempts>1?`<small>${x.attempts} ${plural(x.attempts,"попытка","попытки","попыток")}</small>`:""}</span><b>${topTab==="exam" ? x.pct + "%" : x.points}</b></li>`).join("")}</ol>`
+    : `<p class="lnote">${topTab==="exam" ? "Пока никто не прошёл аттестацию. Будьте первым!" : "В этом месяце ещё никто не тренировался."}</p>`}
+    <p class="lnote">${topTab==="exam" ? "Считается лучший результат каждого." : "Очки — верные ответы в тестах. Обнуляются 1-го числа."}</p>`;
+}
+
+// --- клики обучения
+document.addEventListener("click", e=>{
+  const el = e.target.closest("button"); if(!el) return;
+  if(el.dataset.ltopic !== undefined){ haptic(); let t = learnTopics(); const id = el.dataset.ltopic; t = t.includes(id) ? t.filter(x=>x!==id) : [...t, id]; if(!t.length) return toast("Оставьте хотя бы одну тему"); LS.set("pw_topics", t); LC = null; quiz(); return; }
+  if(el.dataset.lcard !== undefined){ haptic(); cardAnswer(el.dataset.lcard); return; }
+  if(el.dataset.lagain !== undefined){ haptic(); if(el.dataset.lagain==="exam"){ QZ = null; examStart(); } else startTest(QZ && QZ.qs.length > 10 ? 75 : 10); return; }
+  if(el.dataset.ltop !== undefined){ haptic(); topTab = el.dataset.ltop; const box = document.getElementById("ltop"); if(box && TOP) box.innerHTML = topHtml(TOP); return; }
+  if(el.dataset.lresend !== undefined){ haptic(); QZ.sendState = "wait"; resultQ(); post(QZ.payload).then(()=>{ QZ.sendState = "ok"; }).catch(()=>{ QZ.sendState = "err"; }).then(()=>resultQ()); return; }
+  if(el.dataset.lexam !== undefined){
+    const inp = document.getElementById("lname"), name = inp ? inp.value.trim() : "";
+    if(!name){ toast("Напишите имя"); inp && inp.focus(); return; }
+    if(!tgUser) LS.set("pw_name", name);
+    haptic(); startExam(name); return;
+  }
+});
+function learnRoute(b){
+  if(b==="cards") return learnCards();
+  if(b==="test"){ if(!QZ || QZ.kind!=="test" || QZ.qs.length!==10 || QZ.done) startTest(10); else (QZ.saved ? resultQ() : showQ()); return; }
+  if(b==="big"){ if(!QZ || QZ.kind!=="test" || QZ.qs.length<=10) startTest(75); else (QZ.saved ? resultQ() : showQ()); return; }
+  if(b==="exam"){ if(QZ && QZ.kind==="exam") return QZ.saved ? resultQ() : showQ(); return examStart(); }
+  quiz();
+}
+
+/* ---------- Доступ только по списку ---------- */
+let booted = false;
+function allowed(){
+  if(!ACCESS.on) return true;
+  if(A.on || savedToken) return true;
+  return !!(tgUser && (ADMINS.includes(tgUser.id) || STAFF.some(s=>s.id===tgUser.id)));
+}
+function lockScreen(){
+  document.body.classList.add("locked");
+  $top.innerHTML = `<button type="button" class="logo-tap" aria-label="Подушка"><img class="top-word" src="${WORD}" alt="Подушка" draggable="false"></button>`;
+  if (tg) { try { tg.BackButton.hide(); } catch(e){} }
+  const name = tgUser ? [tgUser.first_name, tgUser.last_name].filter(Boolean).join(" ") : "";
+  $view.innerHTML = `<section class="lock"><img class="lock-cat" src="${CAT}" alt="">
+    <h1>Нет доступа</h1>
+    ${tgUser ? `<p>Шпаргалка открыта только для команды «Подушки». Отправьте управляющему свой Telegram ID — после того как вас добавят, просто откройте шпаргалку снова.</p>
+      <div class="lock-id"><span>${esc(name)}</span><b>${tgUser.id}</b></div>
+      <button class="lb main" type="button" data-copyid="${tgUser.id}">Скопировать ID</button>`
+    : `<p>Откройте шпаргалку через Telegram-бота «Подушки».</p>`}</section>`;
+}
+document.addEventListener("click", e=>{ const b = e.target.closest("[data-copyid]"); if(!b) return;
+  const id = b.dataset.copyid; (navigator.clipboard ? navigator.clipboard.writeText(id) : Promise.reject()).then(()=>toast("ID скопирован"), ()=>toast("ID: " + id)); });
+
+/* ---------- Экран загрузки ---------- */
+const splash = (()=>{ const d = document.createElement("div"); d.id = "splash";
+  d.innerHTML = `<img class="spl-cat" src="${CAT}" alt=""><img class="spl-word" src="${WORD}" alt="Подушка"><i class="spl-bar"><u></u></i><p>Загружаем меню…</p>`;
+  document.body.appendChild(d); return d; })();
+function splashProgress(k){ const u = splash.querySelector(".spl-bar u"); if(u) u.style.width = Math.round(10 + k*90) + "%"; }
+function hideSplash(){ if(!splash.isConnected || splash.classList.contains("out")) return; splashProgress(1); splash.classList.add("out"); setTimeout(()=>splash.remove(), 450); }
+function waitImages(root, timeout){
+  const imgs = [...root.querySelectorAll("img")].filter(i=>{ const r = i.getBoundingClientRect(); return r.top < innerHeight * 1.5 && !i.complete; });
+  if(!imgs.length) return Promise.resolve();
+  let left = imgs.length; const total = left;
+  return new Promise(res=>{ const done = ()=>{ left--; splashProgress(.4 + .6 * (total-left)/total); if(left <= 0) res(); };
+    imgs.forEach(i=>{ i.loading = "eager"; i.addEventListener("load", done, { once: true }); i.addEventListener("error", done, { once: true }); });
+    setTimeout(res, timeout); });
+}
+
+function rerender(){ if(!booted) return; if(!allowed()){ lockScreen(); return; } const y = window.scrollY; routeInner(); window.scrollTo(0, y); applyStop(); }
 function reloadContent(){
   return fetch("content.json?t=" + Date.now(), { cache: "no-store" })
     .then(r => r.ok ? r.json() : null)
-    .then(d => { if(d && d.kitchen && !A.on){ setDB(d); rerender(); loadStop(); } })
-    .catch(()=>{});
+    .then(d => { if(d && d.kitchen && !A.on) setDB(d); })
+    .catch(()=>{ try{ if(localStorage.getItem("pw_acc_on")==="1") ACCESS.on = true; }catch(e){} })
+    .then(()=>{ booted = true; rerender(); loadStop(); });
 }
-route();
+splashProgress(.15);
 loadStop();
-reloadContent();
+reloadContent().then(()=>{ splashProgress(.4); return waitImages($view, 6000); }).then(hideSplash);
+setTimeout(hideSplash, 10000);   // на случай очень медленного интернета
 loadBarEncyclopedia();
 })();
 </script>
