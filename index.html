@@ -6706,7 +6706,7 @@ async function openGear(){
   });
 }
 function adminMenu(){
-  const ex = EXAM_CFG, tps = ex.topics && ex.topics.length ? ex.topics : LTOPICS.map(x=>x[0]);
+  const ex = EXAM_CFG, tps = examTopics(ex).map(x=>x[0]);
   openSheet({
     title: "Настройки",
     body: `<p class="hint">Вы вошли как администратор. Правки сохраняются в content.json, фото — в папку img/ репозитория ${esc(A.repo)}. Вход — 5 нажатий подряд на логотип «Подушка».</p>
@@ -6719,7 +6719,7 @@ function adminMenu(){
       <div style="display:flex;gap:10px"><label style="flex:1;min-width:0">Вопросов<input name="n" inputmode="numeric" value="${esc(String(ex.n||40))}"></label>
         <label style="flex:1;min-width:0">Проходной, %<input name="pass" inputmode="numeric" value="${esc(String(ex.pass||80))}"></label></div>
       <label style="margin-bottom:-4px">Темы аттестации</label>
-      ${LTOPICS.map(x=>`<label class="chk"><input type="checkbox" name="topic" value="${x[0]}"${tps.includes(x[0])?" checked":""}> ${x[1]}</label>`).join("")}
+      ${EXAM_TOPICS.map(x=>`<label class="chk"><input type="checkbox" name="topic" value="${x[0]}"${tps.includes(x[0])?" checked":""}> ${x[1]}</label>`).join("")}
       <div class="sec-label eyebrow" style="margin-top:6px">Токен</div>
       <label class="chk"><input type="checkbox" name="forget"> Забыть токен на этом аккаунте и выйти</label>`,
     saveText: "Готово",
@@ -6729,7 +6729,7 @@ function adminMenu(){
       const tp = [...form.querySelectorAll('[name="topic"]:checked')].map(x=>x.value);
       if(!tp.length){ fail("Отметьте хотя бы одну тему аттестации."); return false; }
       const n = Math.max(5, Math.min(150, parseInt(val(form,"n"),10)||40)), pass = Math.max(10, Math.min(100, parseInt(val(form,"pass"),10)||80));
-      const nx = { n, pass }; if(url) nx.url = url; if(tp.length < LTOPICS.length) nx.topics = tp;
+      const nx = { n, pass }; if(url) nx.url = url; nx.topics = tp;
       let dirty = false;
       if(JSON.stringify(nx) !== JSON.stringify(EXAM_CFG)){ EXAM_CFG = nx; dirty = true; }
       const staff = val(form,"staff").split("\n").map(l=>l.trim().match(/^(\d{3,})[\s,;:—-]*(.*)$/)).filter(Boolean).map(m=>m[2].trim()?{ id:Number(m[1]), name:m[2].trim() }:{ id:Number(m[1]) });
@@ -6922,6 +6922,126 @@ function makeQuiz(topics, n){
   return shuffle(qs).slice(0, n);
 }
 
+const EXAM_TOPICS = [
+  ["kitchen", "Кухня", 45], ["bar", "Бар", 35],
+  ["story", "Работа с гостем", 20], ["hist", "История", 10]
+];
+const examTopics = (ex = EXAMW()) => EXAM_TOPICS.filter(([id]) =>
+  ex.topics?.length ? ex.topics.includes(id) : id !== "hist"
+);
+const EXAM_SERVICE = [
+  ["Гость сообщил об аллергии, а в карточке блюда нужный ингредиент не указан. Что сделать перед заказом?",
+    "Уточнить состав и риск контакта с аллергеном на кухне, затем сообщить гостю результат.",
+    "Подтвердить, что блюдо подходит, по списку в карточке.",
+    "Предложить убрать видимый ингредиент и принять заказ.",
+    "Подобрать похожее блюдо по описанию и сразу принять заказ."],
+  ["Гость заказал салат без соуса. Как передать заказ?",
+    "Уточнить возможность изменения и явно передать на кухню «без соуса».",
+    "Попросить принести соус отдельно без уточнения у гостя.",
+    "Передать стандартный заказ и уточнить при подаче.",
+    "Передать на кухню «меньше соуса»."],
+  ["Гость просит помочь выбрать напиток. С чего начать?",
+    "Уточнить, нужен ли алкоголь, и спросить, какой вкус он предпочитает.",
+    "Назвать самый популярный коктейль и сразу пробить его.",
+    "Перечислить напитки в порядке крепости.",
+    "Предложить напиток только по цене, без описания вкуса."],
+  ["Гость просит безалкогольный напиток, а вы не уверены в составе выбранной позиции. Что ответить?",
+    "Сказать, что уточните состав у бара, и вернуться с подтверждением.",
+    "Назвать напиток безалкогольным, если в названии нет алкоголя.",
+    "Ориентироваться на вкус напитка и ответить по памяти.",
+    "Предположить, что небольшое количество алкоголя устроит гостя."],
+  ["Позиция закончилась после того, как гость её заказал. Что сделать?",
+    "Сообщить гостю и предложить доступные варианты, учитывая его предпочтения.",
+    "Заменить блюдо похожим и объяснить при подаче.",
+    "Подождать, пока гость сам спросит про заказ.",
+    "Убрать позицию из заказа и сообщить об этом при расчёте."],
+  ["Гость получил блюдо, которое отличается от согласованного заказа. Что сделать сначала?",
+    "Сверить заказ с гостем и передать расхождение для исправления.",
+    "Предложить гостю сначала попробовать блюдо.",
+    "Сразу заменить блюдо на похожее по своему выбору.",
+    "Отложить обсуждение до расчёта."]
+];
+
+function examBank(){
+  const bank = { kitchen: [], bar: [], story: [], hist: [] };
+  // Варианты берём из однотипных полей карточек, предпочтительно из той же категории.
+  function add(topic, q, answer, local, fallback, why){
+    const a = String(answer || "").replace(/\s+/g, " ").trim();
+    if(!a || a.length > 240 || /^(?:нет|не указан[оы]?|—|-)\.?$/i.test(a)) return;
+    const clean = values => values.map(v => String(v || "").replace(/\s+/g, " ").trim())
+      .filter(v => v && v.length <= 240 && !/^(?:нет|не указан[оы]?|—|-)\.?$/i.test(v));
+    const o = distract(a, clean(local)) || distract(a, clean(fallback));
+    if(o) bank[topic].push({ q, a, o, why: why || a, topic });
+  }
+
+  for(const g of K){
+    for(const it of g.items){
+      const name = `«${it.name}»`;
+      const comp = x => (x.comp || []).slice(0, 2).join(" · ");
+      add("kitchen", `Какие компоненты входят в блюдо ${name} по карточке меню?`,
+        comp(it), g.items.map(comp), KF.map(comp));
+      add("kitchen", `Какие основные аллергены указаны в карточке блюда ${name}?`,
+        it.allerg, g.items.map(x => x.allerg), KF.map(x => x.allerg),
+        `В карточке указано: ${it.allerg}. При сообщении об аллергии уточните полный состав и риск контакта с аллергеном на кухне.`);
+      add("story", `Гость хочет дополнить блюдо ${name}. Какой набор допов указан в меню?`,
+        it.dops, g.items.map(x => x.dops), KF.map(x => x.dops));
+    }
+  }
+
+  for(const {s, g, it} of BF){
+    const section = BF.filter(x => x.s === s).map(x => x.it);
+    const name = `«${it.name}»`;
+    const fields = [
+      [`Что входит в напиток ${name} по карточке меню?`, x => longF(x, "Состав")],
+      [`Какой стиль указан для напитка ${name}?`, x => chip(x, "Стиль")],
+      [`Какие сорта винограда указаны для вина ${name}?`, x => longF(x, "Сортовой состав")]
+    ];
+    for(const [q, read] of fields){
+      add("bar", q, read(it), g.items.map(read), section.map(read));
+    }
+    const taste = x => (x.tags || []).join(", ");
+    add("story", `Гость спрашивает, какой вкус у напитка ${name}. Как его описывает карточка меню?`,
+      taste(it), g.items.map(taste), section.map(taste));
+  }
+
+  bank.story.unshift(...EXAM_SERVICE.map(([q, a, ...o]) => ({ q, a, o, why: a, topic: "story" })));
+  const menuNames = [...KF.map(x => x.name), ...BF.map(x => x.it.name + " " + (x.it.alt || ""))];
+  bank.hist = HISTORY.filter(h => menuNames.some(name => h.m.test(name)))
+    .map(({q, a, o, why}) => ({ q, a, o, why, topic: "hist" }));
+  return bank;
+}
+
+function makeExam(ex){
+  const bank = examBank();
+  const recent = new Set(LS.get("pw_exam_recent", []));
+  const topics = examTopics(ex).map(([id, , weight]) => {
+    const seen = new Set();
+    const pool = shuffle(bank[id]).filter(({q}) => {
+      if(seen.has(q)) return false;
+      seen.add(q);
+      return true;
+    });
+    // Сначала предлагаем практическую ситуацию, которой ещё не было в недавних попытках.
+    const priority = question => EXAM_SERVICE.some(([q]) => q === question.q);
+    if(id === "story"){
+      const first = pool.findIndex(question => priority(question) && !recent.has(question.q));
+      if(first >= 0) pool.unshift(...pool.splice(first, 1));
+    }
+    pool.sort((a,b) => Number(recent.has(a.q)) - Number(recent.has(b.q)));
+    return { pool, weight, used: 0 };
+  });
+  const qs = [];
+  while(qs.length < (ex.n || 40)){
+    const next = topics.filter(t => t.used < t.pool.length)
+      .sort((a,b) => (a.used + 1) / a.weight - (b.used + 1) / b.weight)[0];
+    if(!next) break;
+    const q = next.pool[next.used++];
+    qs.push({ ...q, opts: shuffle([q.a, ...q.o]) });
+  }
+  LS.set("pw_exam_recent", [...new Set([...qs.map(q => q.q), ...recent])].slice(0, 200));
+  return shuffle(qs);
+}
+
 // --- карточки по меню
 function cardPool(){
   const tp = learnTopics(), out = [];
@@ -6995,7 +7115,7 @@ function quiz(){
       <button class="qbtn" type="button" data-go="quiz-test"><b>Тест</b><span>10 вопросов с подсказками и мемом</span></button>
       <button class="qbtn" type="button" data-go="quiz-big" style="grid-column:span 2"><b>Большой тест · 75 вопросов</b><span>Всё меню и история, с подсказками</span></button>
     </div>
-    <button class="sj-cta" type="button" data-go="quiz-exam"><b>Аттестация</b><span>${ex.n||40} вопросов без подсказок, проходной балл ${ex.pass||80}%.${ex.url ? " Лучший результат попадёт в рейтинг." : ""}</span></button>
+    <button class="sj-cta" type="button" data-go="quiz-exam"><b>Аттестация</b><span>До ${ex.n||40} вопросов без подсказок, проходной балл ${ex.pass||80}%.${ex.url ? " Лучший результат попадёт в рейтинг." : ""}</span></button>
     <div class="sec-label eyebrow">Энциклопедия</div>
     <div class="lread">${rs.per.map(x=>`<button type="button" class="lrow" data-spirit="${esc(x.s.id)}"><span>${esc(x.s.name)}</span><i class="pbar"><u style="width:${pct(x.d,x.t)}%"></u></i><small>${x.d}/${x.t}</small></button>`).join("")}</div>`;
   if(ex.url) loadTop().then(t=>{ const box = document.getElementById("ltop"); if(box) box.innerHTML = topHtml(t); });
@@ -7005,7 +7125,7 @@ function quiz(){
 function startTest(n){ QZ = { kind:"test", qs: makeQuiz(learnTopics(), n), i:0, score:0, picks:[], wrong:[], answered:false }; showQ(); }
 function startExam(name){
   const ex = EXAMW();
-  QZ = { kind:"exam", name, qs: makeQuiz(ex.topics && ex.topics.length ? ex.topics : null, ex.n||40), i:0, score:0, picks:[], wrong:[], answered:false };
+  QZ = { kind:"exam", name, qs: makeExam(ex), i:0, score:0, picks:[], wrong:[], answered:false };
   showQ();
 }
 function showQ(){
@@ -7072,10 +7192,13 @@ function staffName(){
 }
 function examStart(){
   topbar("Аттестация"); setNav("quiz");
-  const ex = EXAMW(), tps = ex.topics && ex.topics.length ? LTOPICS.filter(t=>ex.topics.includes(t[0])) : LTOPICS;
+  const ex = EXAMW(), tps = examTopics(ex);
+  const bank = examBank();
+  const available = new Set(tps.flatMap(([id]) => bank[id].map(({q}) => q))).size;
+  const count = Math.min(ex.n||40, available);
   const locked = tgUser && STAFF.some(x=>x.id===tgUser.id && x.name);
   $view.innerHTML = `<section class="sp-head"><span class="eyebrow">Аттестация</span><h1>Проверка знаний</h1>
-      <p>${ex.n||40} вопросов: ${esc(tps.map(t=>t[1].toLowerCase()).join(", "))}. Подсказок нет, правильные ответы покажем в конце. Проходной балл — ${ex.pass||80}%.${ex.url ? " Лучший результат попадёт в рейтинг." : ""}</p></section>
+      <p>${count} ${plural(count,"вопрос","вопроса","вопросов")}: ${esc(tps.map(t=>t[1].toLowerCase()).join(", "))}. Подсказок нет, правильные ответы покажем в конце. Проходной балл — ${ex.pass||80}%.${ex.url ? " Лучший результат попадёт в рейтинг." : ""}</p></section>
     <div class="lcard"><label class="lname">Ваше имя<input id="lname" value="${esc(staffName())}" placeholder="Имя и фамилия"${locked ? " readonly" : ""}></label></div>
     <div class="lbtns"><button type="button" class="lb main" data-lexam>Начать аттестацию</button></div>`;
 }
